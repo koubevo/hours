@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('nickname');
             $table->boolean('is_hidden')->default(false);
+            $table->integer('hour_rate');
         });
 
         Schema::create('sessions', function (Blueprint $table) {
