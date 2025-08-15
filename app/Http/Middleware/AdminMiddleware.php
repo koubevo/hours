@@ -15,9 +15,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->session()->get('is_admin')) {
-            return redirect()->route('admin.login');
-        }
+        //TODO
+        //if (!$request->session()->get('is_admin')) {
+        //    return redirect()->route('admin.login');
+        //}
 
         return $next($request);
     }
