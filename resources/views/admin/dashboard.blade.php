@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <x-today-hours />
+    <x-today-hours :employees="$employees" />
 
     <!-- TODO: calendar -->
 

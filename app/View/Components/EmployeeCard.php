@@ -8,13 +8,6 @@ use Illuminate\View\Component;
 
 class EmployeeCard extends Component
 {
-    public string $name;
-
-    public function __construct(string $name)
-    {
-        $this->name = $name;
-    }
-
     public function render(): View|Closure|string
     {
         return view('components.employee-card');
