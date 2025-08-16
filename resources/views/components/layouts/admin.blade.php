@@ -19,7 +19,10 @@
         <flux:navlist variant="outline">
             <flux:navlist.item icon="home" href="#" current>Domů</flux:navlist.item>
             <flux:navlist.group expandable heading="Zaměstnanci" class="hidden lg:grid">
-                <flux:navlist.item href="#">Marketing site</flux:navlist.item>
+                <flux:navlist.item href="#">
+                    <flux:badge color="green" size="sm" style="padding: 4px !important" class="me-2"></flux:badge>
+                    Marketing site
+                </flux:navlist.item>
             </flux:navlist.group>
         </flux:navlist>
         <flux:spacer />
