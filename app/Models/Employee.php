@@ -20,4 +20,9 @@ class Employee extends Authenticatable
         'hour_rate',
         'is_hidden'
     ];
+
+    public function hours()
+    {
+        return $this->hasMany(Hour::class);
+    }
 }
