@@ -17,7 +17,7 @@
         <flux:brand href="{{ route('admin.dashboard') }}" logo="https://fluxui.dev/img/demo/logo.png" name="Acme Inc."
             class="px-2 dark:hidden" />
         <flux:navlist variant="outline">
-            <flux:navlist.item icon="home" href="#" current>Domů</flux:navlist.item>
+            <flux:navlist.item icon="home" href="{{ route('admin.dashboard') }}" current>Domů</flux:navlist.item>
             <flux:navlist.group expandable heading="Zaměstnanci" class="hidden lg:grid">
                 @foreach($allEmployees as $employee)
                     <flux:navlist.item href="{{ route('employee.show', $employee->id) }}">
