@@ -24,7 +24,7 @@
                         <flux:badge color="{{ true ? 'green' : 'red' }}" size="sm" style="padding: 4px !important"
                             class="me-2">
                         </flux:badge>
-                        {{ $employee->nickname ?? $employee->name }}
+                        {{ !empty($employee->nickname) ? $employee->nickname : $employee->name }}
                     </flux:navlist.item>
                 @endforeach
             </flux:navlist.group>
