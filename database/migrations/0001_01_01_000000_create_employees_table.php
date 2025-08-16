@@ -10,12 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('nickname');
+            $table->string('nickname')->nullable();
             $table->boolean('is_hidden')->default(false);
-            $table->integer('hour_rate');
+            $table->integer('hour_rate')->nullable();
+            $table->timestamps();
         });
 
         Schema::create('sessions', function (Blueprint $table) {
@@ -33,7 +34,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('employees');
         Schema::dropIfExists('sessions');
     }
 };
