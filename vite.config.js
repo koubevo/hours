@@ -14,5 +14,9 @@ export default defineConfig({
     ],
     server: {
         cors: true,
+        watch: {
+            usePolling: true,
+            interval: 100,
+        },
     },
 });
