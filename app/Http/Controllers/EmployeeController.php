@@ -20,31 +20,28 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('components.users.create');
+        return view('components.employees.create');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(int $id)
+    public function show(Employee $employee)
     {
-        //
+        return view('livewire.employees.show', ['employee' => $employee]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $id)
+    public function edit(Employee $employee)
     {
-        $employee = Employee::findOrFail($id);
-        return view('components.users.edit', ['employee' => $employee]);
+        return view('components.employees.edit', ['employee' => $employee]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(int $id)
+    public function hide(Employee $employee)
     {
-        //
+        //TODO
+        return;
     }
 }
