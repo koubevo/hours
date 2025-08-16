@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') | Administrace</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body class="min-h-screen bg-white dark:bg-zinc-800">
@@ -39,6 +40,7 @@
         @yield('content')
     </flux:main>
     @fluxScripts
+    @livewireScripts
 </body>
 
 </html>
