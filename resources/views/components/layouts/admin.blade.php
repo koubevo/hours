@@ -28,8 +28,9 @@
         </flux:navlist>
         <flux:spacer />
         <flux:navlist variant="outline">
-            <flux:navlist.item icon="plus" href="#">Přidat zaměstnance</flux:navlist.item>
-            <flux:navlist.item icon="cog-6-tooth" href="#">Nastavení</flux:navlist.item>
+            <flux:navlist.item icon="plus" href="{{ route('employee.create') }}">
+                Přidat zaměstnance
+            </flux:navlist.item>
         </flux:navlist>
     </flux:sidebar>
     <flux:main>
