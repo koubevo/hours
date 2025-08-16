@@ -3,5 +3,5 @@
 @section('title', 'Upravit data zaměstnance')
 
 @section('content')
-    @livewire('forms.new-employee-form', ['employee' => $employee])
+    @livewire('forms.edit-employee-form', ['employee' => $employee])
 @endsection

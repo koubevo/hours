@@ -8,8 +8,8 @@ use Livewire\Component;
 class NewEmployeeForm extends Component
 {
     public string $name;
-    public string|null $nickname;
-    public int|null $hour_rate;
+    public ?string $nickname;
+    public ?int $hour_rate;
 
     protected $rules = [
         'name' => 'required|string|max:255',
