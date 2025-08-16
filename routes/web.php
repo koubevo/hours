@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HoursController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -15,6 +16,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::resource('/employee', EmployeeController::class);
 
+    Route::resource('/hours', HoursController::class);
 });
 
 require __DIR__ . '/auth.php';

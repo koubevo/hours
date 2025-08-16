@@ -64,3 +64,6 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+.custom-input {
+    @apply p-2 rounded-lg shadow-sm border;
+}
