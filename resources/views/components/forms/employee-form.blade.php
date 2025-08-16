@@ -21,10 +21,11 @@
     <div>
         <flux:field>
             <flux:label>Hodinová sazba</flux:label>
-
-            <flux:input id="hour_rate" type="number" wire:model="hour_rate" />
-
-            <flux:error name="hour_rate" />
+            <flux:input.group>
+                <flux:input id="hour_rate" type="number" wire:model="hour_rate" />
+                <flux:input.group.suffix>Kč</flux:input.group.prefix>
+                    <flux:error name="hour_rate" />
+            </flux:input.group>
         </flux:field>
     </div>
 </div>
