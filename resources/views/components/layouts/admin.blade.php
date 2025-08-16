@@ -18,7 +18,6 @@
             class="px-2 hidden dark:flex" />
         <flux:navlist variant="outline">
             <flux:navlist.item icon="home" href="#" current>Domů</flux:navlist.item>
-            <flux:navlist.item icon="calendar" href="#">Kalendář</flux:navlist.item>
             <flux:navlist.group expandable heading="Zaměstnanci" class="hidden lg:grid">
                 <flux:navlist.item href="#">Marketing site</flux:navlist.item>
             </flux:navlist.group>
@@ -33,7 +32,7 @@
         <flux:heading size="xl" level="1">
             @yield('title')
         </flux:heading>
-        <flux:separator class="mt-2" variant="subtle" />
+        <flux:separator class="my-2" variant="subtle" />
         @yield('content')
     </flux:main>
     @fluxScripts

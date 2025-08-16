@@ -4,4 +4,8 @@
 
 @section('content')
 
+    <x-today-hours />
+
+    <!-- TODO: calendar -->
+
 @endsection

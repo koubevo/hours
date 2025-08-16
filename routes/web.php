@@ -11,7 +11,7 @@ Route::view('admin/login', 'admin.login')
     ->name('admin.login');
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::view('admin/dashboard', 'admin.dashboard')
+    Route::view('admin', 'admin.dashboard')
         ->name('admin.dashboard');
 });
 
