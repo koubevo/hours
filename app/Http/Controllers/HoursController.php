@@ -11,7 +11,7 @@ class HoursController extends Controller
      */
     public function create(Request $request)
     {
-        $preselectedEmployee = $request->get('employee_id');
+        $preselectedEmployee = $request->get('employee');
         $preselectedDate = $request->get('date');
 
         return view('components.hours.create', [
