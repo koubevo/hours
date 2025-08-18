@@ -13,31 +13,9 @@ class AddHoursForm extends Component
 
     public function mount($preselectedEmployee = null, $preselectedDate = null)
     {
-        if ($preselectedEmployee) {
-            $this->employee = $preselectedEmployee;
-            $this->updateHourRate();
-        }
+        $this->employee = $preselectedEmployee ?? null;
 
-        if ($preselectedDate) {
-            $this->work_date = $preselectedDate;
-        } else {
-            $this->work_date = now()->format('Y-m-d');
-        }
-    }
-
-    public function updatedEmployee()
-    {
-        $this->updateHourRate();
-    }
-
-    protected function updateHourRate()
-    {
-        if ($this->employee) {
-            $selectedEmployee = Employee::find($this->employee);
-            if ($selectedEmployee) {
-                $this->hour_rate = $selectedEmployee->hour_rate;
-            }
-        }
+        $this->work_date = $preselectedDate ? $preselectedDate : now()->format('Y-m-d');
     }
 
     public function render()
