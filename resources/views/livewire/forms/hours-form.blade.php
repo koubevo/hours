@@ -8,7 +8,7 @@
 
                 <flux:select wire:model="employee" wire:change="updateHourRate" placeholder="Vyber zaměstnance">
                     @foreach ($employees as $employee)
-                        <flux:select.option id="{{ $employee->id }}" value="{{ $employee->id }}">{{ $employee->name }}
+                        <flux:select.option id="{{ $employee->id }}" value="{{ $employee->id }}">{{ $employee->nickname ? $employee->nickname : $employee->name }}
                         </flux:select.option>
                     @endforeach
                 </flux:select>
