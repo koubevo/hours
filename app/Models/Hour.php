@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Carbon\Carbon;
 
 class Hour extends Model
 {
@@ -23,11 +24,16 @@ class Hour extends Model
 
     public function getStartTimeAttribute($value)
     {
-        return $value ? \Carbon\Carbon::parse($value)->format('H:i') : null;
+        return $value ? Carbon::parse($value)->format('H:i') : null;
     }
 
     public function getEndTimeAttribute($value)
     {
-        return $value ? \Carbon\Carbon::parse($value)->format('H:i') : null;
+        return $value ? Carbon::parse($value)->format('H:i') : null;
+    }
+
+    public function getWorkDateAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format('d.m.') : null;
     }
 }
