@@ -3,8 +3,8 @@
 @section('title', 'Přidat hodiny')
 
 @section('content')
-    @livewire('forms.add-hours-form', [
-        'preselectedEmployee' => $preselectedEmployee ?? null,
-        'preselectedDate' => $preselectedDate ?? null
+    @livewire('forms.hours-form', [
+        'employee' => $preselectedEmployee ?? null,
+        'date' => $preselectedDate ?? null
     ])
 @endsection

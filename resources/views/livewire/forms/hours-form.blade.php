@@ -1,4 +1,4 @@
-<div>
+<form wire:submit.prevent="save">
     <div class="w-full md:w-2/3 mt-4 space-y-4">
         <div>
             <flux:field>
@@ -61,5 +61,10 @@
             </flux:field>
         </div>
     </div>
+    
     <flux:text class="mt-2">* Povinné pole</flux:text>
-</div>
+    
+    <flux:button class="cursor-pointer mt-4" type="submit">
+        {{ $isEditMode ? 'Uložit změny' : 'Přidat' }}
+    </flux:button>
+</form>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Hour;
 
 class HoursController extends Controller
 {
@@ -23,9 +24,11 @@ class HoursController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Hour $hour)
     {
-        //
+        return view('components.hours.edit', [
+            'hourId' => $hour->id,
+        ]);
     }
 
     /**
