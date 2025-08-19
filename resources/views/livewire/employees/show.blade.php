@@ -17,7 +17,6 @@
             ],
             [
                 'text' => 'Skrýt zaměstnance',
-                'route' => route('employee.edit', ['employee' => $employee]),
                 'icon' => 'eye-slash'
             ]
         ]
