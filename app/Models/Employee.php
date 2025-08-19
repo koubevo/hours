@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class Employee extends Authenticatable
 {
@@ -24,5 +25,15 @@ class Employee extends Authenticatable
     public function hours()
     {
         return $this->hasMany(Hour::class);
+    }
+
+    public function hasHoursToday(): bool
+    {
+        return $this->hours()->where('work_date', Carbon::today()->toDateString())->exists();
+    }
+
+    public function todayHours()
+    {
+        return $this->hours()->where('work_date', Carbon::today()->toDateString())->get();
     }
 }
