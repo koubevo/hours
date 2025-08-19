@@ -21,10 +21,14 @@
             <flux:navlist.group expandable heading="Zaměstnanci" class="hidden lg:grid">
                 @foreach($allEmployees as $employee)
                     <flux:navlist.item href="{{ route('employee.show', $employee->id) }}">
-                        <flux:badge color="{{ true ? 'green' : 'red' }}" size="sm" style="padding: 4px !important"
-                            class="me-2">
-                        </flux:badge>
-                        {{ !empty($employee->nickname) ? $employee->nickname : $employee->name }}
+                        <div class="flex flex-row justify-between items-center">
+                            <div>
+                                <flux:badge color="{{ true ? 'green' : 'red' }}" size="sm" style="padding: 4px !important"
+                                    class="me-2 mb-0.5">
+                                </flux:badge>
+                                {{ !empty($employee->nickname) ? $employee->nickname : $employee->name }}
+                            </div>
+                        </div>
                     </flux:navlist.item>
                 @endforeach
             </flux:navlist.group>
