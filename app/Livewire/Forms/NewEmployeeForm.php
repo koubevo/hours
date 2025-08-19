@@ -17,7 +17,7 @@ class NewEmployeeForm extends Component
         'hour_rate' => 'nullable|integer|min:1|max:1000',
     ];
 
-    public function submit()
+    public function store()
     {
         $this->validate();
 
