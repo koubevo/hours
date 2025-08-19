@@ -61,5 +61,5 @@
             </flux:field>
         </div>
     </div>
-    <flux:text>* Povinné pole</flux:text>
+    <flux:text class="mt-2">* Povinné pole</flux:text>
 </div>

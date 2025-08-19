@@ -1,4 +1,4 @@
-<div class="w-full md:w-2/3 mt-4 space-y-4">
+<div class="w-full md:w-2/3 mt-2 space-y-4 mb-2">
     <div>
         <flux:field>
             <flux:label>Jméno *
@@ -29,4 +29,4 @@
         </flux:field>
     </div>
 </div>
-<flux:text>* Povinné pole</flux:text>
+<flux:text class="mb-0">* Povinné pole</flux:text>

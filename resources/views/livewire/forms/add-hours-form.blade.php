@@ -3,7 +3,7 @@
         'employee' => $employee,
         'date' => $work_date
     ])
-    <flux:button class="cursor-pointer" type="submit">
+    <flux:button class="cursor-pointer mt-2" type="submit">
         Přidat
     </flux:button>
 </form>

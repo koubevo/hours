@@ -1,5 +1,5 @@
 @props(['employee'])
-<a href="{{ route('employee.show', $employee->id) }}" class="block">
+<a href="{{ route('hours.create', ['employee' => $employee->id]) }}" class="block">
     <x-card>
         <flux:heading>{{ !empty($employee->nickname) ? $employee->nickname : $employee->name }}</flux:heading>
         <flux:text class="mt-2">
