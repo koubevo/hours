@@ -5,7 +5,23 @@
 @section('content')
 
 <section>
-    
+    @livewire('ui.button-group', [
+        'buttons' => [
+            [
+                'text' => 'Přidat hodiny',
+                'route' => route('hours.create', ['employee' => $employee->id])
+            ],
+            [
+                'text' => 'Upravit data zaměstnance',
+                'route' => route('employee.edit', ['employee' => $employee])
+            ],
+            [
+                'text' => 'Skrýt zaměstnance',
+                'route' => route('employee.edit', ['employee' => $employee]),
+                'icon' => 'eye-slash'
+            ]
+        ]
+    ])
 </section>
 
 @endsection
