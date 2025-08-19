@@ -19,13 +19,11 @@ class HoursForm extends Component
     {
         $this->employees = Employee::all();
 
-        // Set employee if provided in URL
         if ($employee) {
             $this->employee = $employee;
             $this->updateHourRate();
         }
 
-        // Set date if provided in URL, otherwise use current date
         $this->work_date = $date ?: now()->format('Y-m-d');
     }
 
