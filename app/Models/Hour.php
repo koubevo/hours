@@ -12,7 +12,8 @@ class Hour extends Model
         'work_date',
         'start_time',
         'end_time',
-        'earning'
+        'earning',
+        'description'
     ];
 
     public function employee(): BelongsTo

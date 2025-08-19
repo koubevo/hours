@@ -16,7 +16,7 @@
         </div>
         <div>
             <flux:field>
-                <flux:label>Datum</flux:label>
+                <flux:label>Datum *</flux:label>
 
                 <flux:input id="work_date" type="date" wire:model="work_date" />
 
@@ -25,7 +25,7 @@
         </div>
         <div>
             <flux:field>
-                <flux:label>Začátek</flux:label>
+                <flux:label>Začátek *</flux:label>
 
                 <flux:input id="start_time" type="time" wire:model="start_time" />
 
@@ -34,7 +34,7 @@
         </div>
         <div>
             <flux:field>
-                <flux:label>Konec</flux:label>
+                <flux:label>Konec *</flux:label>
 
                 <flux:input id="end_time" type="time" wire:model="end_time" />
 
