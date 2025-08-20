@@ -4,7 +4,7 @@
 
 @section('content')
 
-<section>
+<section class="space-y-4">
     @livewire('ui.button-group', [
         'buttons' => [
             [
@@ -21,6 +21,19 @@
             ]
         ]
     ])
+
+    @if (!empty($employee->hours))
+        @livewire('ui.table', [
+            'columns' => [
+                ['label' => 'Datum', 'key' => 'work_date'],
+                ['label' => 'Od', 'key' => 'start_time'],
+                ['label' => 'Do', 'key' => 'end_time'],
+                ['label' => 'Částka', 'key' => 'earning', 'countable' => true],
+            ],
+            'rows' => $employee->hours,
+            'showMonthSelector' => true,
+        ])
+    @endif
 </section>
 
 @endsection

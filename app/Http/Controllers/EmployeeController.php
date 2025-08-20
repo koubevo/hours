@@ -28,6 +28,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
+        $employee->load(['hours']);
         return view('livewire.employees.show', ['employee' => $employee]);
     }
 

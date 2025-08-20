@@ -15,8 +15,7 @@
                 ['label' => 'Částka', 'key' => 'earning', 'countable' => true],
             ],
             'rows' => $hours,
-            'showMonthSelector' => true,
-            'showSum' => true,
+            'showMonthSelector' => false,
         ])
     @endif
 
