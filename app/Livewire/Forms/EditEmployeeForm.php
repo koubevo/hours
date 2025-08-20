@@ -32,8 +32,8 @@ class EditEmployeeForm extends Component
 
         $this->employee->update([
             'name' => $this->name,
-            'nickname' => $this->nickname,
-            'hour_rate' => $this->hour_rate,
+            'nickname' => $this->nickname ?? null,
+            'hour_rate' => $this->hour_rate ?? null,
         ]);
 
         session()->flash('success', 'Zaměstnanec byl upraven.');

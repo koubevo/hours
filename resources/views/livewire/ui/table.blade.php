@@ -57,7 +57,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="{{ count($columns) }}">
+                    <td colspan="{{ count($columns) }}" class="py-3 ps-2">
                         <flux:text>
                             Žádná data k dispozici.
                         </flux:text>
@@ -66,7 +66,7 @@
             @endforelse
         </tbody>
         <tfoot>
-            @if(collect($columns)->contains(fn($col) => !empty($col['countable'])))
+            @if(collect($columns)->contains(fn($col) => !empty($col['countable'])) && count($rows) > 0)
                 <tr>
                     <th>
                         <flux:heading class="text-start py-3 ps-2">
