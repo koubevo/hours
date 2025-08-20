@@ -21,7 +21,7 @@
             <flux:navlist.item icon="plus" href="{{ route('hours.create') }}">Přidat hodiny</flux:navlist.item>
             <flux:navlist.group expandable heading="Zaměstnanci" class="hidden lg:grid">
                 @foreach($allEmployees as $employee)
-                    <flux:navlist.item href="{{ $employee->hasHoursToday() ? route('employee.show', ['employee' => $employee->id]) : route('hours.create', ['employee' => $employee->id]) }}">
+                    <flux:navlist.item href="{{ route('employee.show', ['employee' => $employee->id]) }}">
                         <div class="flex flex-row justify-between items-center">
                             <div>
                                 <flux:badge color="{{ $employee->hasHoursToday() ? 'green' : 'red' }}" size="sm" style="padding: 4px !important"

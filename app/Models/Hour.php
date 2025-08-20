@@ -17,6 +17,8 @@ class Hour extends Model
         'description'
     ];
 
+    protected $appends = ['formatted_work_date'];
+
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);
@@ -32,8 +34,8 @@ class Hour extends Model
         return $value ? Carbon::parse($value)->format('H:i') : null;
     }
 
-    public function getWorkDateAttribute($value)
+    public function getFormattedWorkDateAttribute(): ?string
     {
-        return $value ? Carbon::parse($value)->format('d.m.') : null;
+        return $this->work_date ? Carbon::parse($this->work_date)->format('d.m.') : null;
     }
 }

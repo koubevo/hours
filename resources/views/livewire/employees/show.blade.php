@@ -25,7 +25,7 @@
     @if (!empty($employee->hours))
         @livewire('ui.table', [
             'columns' => [
-                ['label' => 'Datum', 'key' => 'work_date'],
+                ['label' => 'Datum', 'key' => 'formatted_work_date'],
                 ['label' => 'Od', 'key' => 'start_time'],
                 ['label' => 'Do', 'key' => 'end_time'],
                 ['label' => 'Částka', 'key' => 'earning', 'countable' => true],
