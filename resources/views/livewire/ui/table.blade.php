@@ -82,7 +82,7 @@
     </table>
     @if (!empty($rows))
         <flux:text class="mt-4" size="sm">
-            Nalezeno {{ count($rows) }} výsledků.
+            Počet výsledků: {{ count($rows) }}.
         </flux:text>
     @endif
 </div>
