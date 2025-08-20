@@ -1,5 +1,13 @@
 <div class="border rounded-lg p-8">
     <table class="w-full">
+        <colgroup>
+            <col class="w-4"/>
+            @foreach ($columns as $column)
+                <col>
+            @endforeach
+            <col class="w-10"/>
+            <col class="w-10"/>
+        </colgroup>
         <thead class="border-b-2 border-gray-500">
             <tr>
                 <th class="text-start py-4 ps-2">
@@ -36,13 +44,13 @@
                             </flux:text>
                         </td>
                     @endforeach
-                    <td class="py-3 border-b">
-                        <a href="{{ route($editRoute, $row->id) }}" class="cursor-pointer">
+                    <td class="py-3 border-b text-end pe-2">
+                        <a href="{{ route($editRoute, $row->id) }}" class="cursor-pointer inline-flex justify-end w-full">
                             <flux:icon name="pencil" class="size-4"/>
                         </a>
                     </td>
-                    <td class="py-3 border-b">
-                        <button class="cursor-pointer">
+                    <td class="py-3 border-b text-end pe-2">
+                        <button class="cursor-pointer inline-flex justify-end w-full">
                             <flux:icon name="trash" class="size-4"/>
                         </button>
                     </td>
