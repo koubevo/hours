@@ -64,7 +64,7 @@
     
     <flux:text class="mt-2">* Povinné pole</flux:text>
     
-    <flux:button class="cursor-pointer mt-4" type="submit">
+    <flux:button class="cursor-pointer mt-2" type="submit" variant="primary">
         {{ $isEditMode ? 'Uložit změny' : 'Přidat' }}
     </flux:button>
 </form>
