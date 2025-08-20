@@ -28,7 +28,7 @@ class NewEmployeeForm extends Component
         ]);
 
         $this->reset();
-        session()->flash('message', 'Zaměstnanec byl přidán.');
+        session()->flash('success', 'Zaměstnanec byl přidán.');
 
         return redirect()->route('admin.dashboard');
     }

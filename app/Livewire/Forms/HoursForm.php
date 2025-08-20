@@ -86,10 +86,10 @@ class HoursForm extends Component
 
         if ($this->isEditMode) {
             $this->hour->update($data);
-            session()->flash('message', 'Hodiny byly aktualizovány.');
+            session()->flash('success', 'Hodiny byly aktualizovány.');
         } else {
             Hour::create($data);
-            session()->flash('message', 'Hodiny byly přidány.');
+            session()->flash('success', 'Hodiny byly přidány.');
         }
 
         return redirect()->route('admin.dashboard');

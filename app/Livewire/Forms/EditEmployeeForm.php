@@ -36,7 +36,7 @@ class EditEmployeeForm extends Component
             'hour_rate' => $this->hour_rate,
         ]);
 
-        session()->flash('message', 'Zaměstnanec byl upraven.');
+        session()->flash('success', 'Zaměstnanec byl upraven.');
         return redirect()->route('admin.dashboard');
     }
 

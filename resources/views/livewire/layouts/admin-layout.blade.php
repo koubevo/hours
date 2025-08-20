@@ -48,6 +48,13 @@
         <flux:separator class="my-2" variant="subtle" />
         @yield('content')
     </flux:main>
+    
+    @if (session()->has('success'))
+        @livewire('ui.success-toast', [
+            'message' => session('success')
+        ])
+    @endif
+    
     @fluxScripts
     @livewireScripts
 </body>
