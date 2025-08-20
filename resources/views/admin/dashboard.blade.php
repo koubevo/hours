@@ -16,6 +16,7 @@
             ],
             'rows' => $hours,
             'showMonthSelector' => false,
+            'editRoute' => 'hours.edit'
         ])
     @endif
 

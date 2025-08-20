@@ -11,6 +11,7 @@ class Table extends Component
     public bool $showMonthSelector = false;
     public bool $showSum = false;
     public ?string $selectedMonth = null;
+    public ?string $editRoute = null;
 
     public function render()
     {

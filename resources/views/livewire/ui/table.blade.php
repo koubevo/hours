@@ -2,7 +2,7 @@
     <table class="w-full">
         <thead class="border-b-2 border-gray-500">
             <tr>
-                <th class="text-start py-4">
+                <th class="text-start py-4 ps-2">
                     <flux:heading>#</flux:heading>
                 </th>
                 @foreach ($columns as $column)
@@ -12,12 +12,16 @@
                         </flux:heading>
                     </th>
                 @endforeach
+                <th class="text-start py-4">
+                </th>
+                <th class="text-start py-4">
+                </th>
             </tr>
         </thead>
         <tbody>
             @forelse ($rows as $row)
-                <tr>
-                    <td class="py-3 border-b">
+                <tr class="hover:bg-gray-100">
+                    <td class="py-3 border-b ps-2">
                         <flux:text>
                             {{ $loop->index + 1 }}
                         </flux:text>
@@ -32,6 +36,16 @@
                             </flux:text>
                         </td>
                     @endforeach
+                    <td class="py-3 border-b">
+                        <a href="{{ route($editRoute, $row->id) }}" class="cursor-pointer">
+                            <flux:icon name="pencil" class="size-4"/>
+                        </a>
+                    </td>
+                    <td class="py-3 border-b">
+                        <button class="cursor-pointer">
+                            <flux:icon name="trash" class="size-4"/>
+                        </button>
+                    </td>
                 </tr>
             @empty
                 <tr>
@@ -47,7 +61,7 @@
             @if(collect($columns)->contains(fn($col) => !empty($col['countable'])))
                 <tr>
                     <th>
-                        <flux:heading class="text-start py-3">
+                        <flux:heading class="text-start py-3 ps-2">
                             Celkem
                         </flux:heading>
                     </th>

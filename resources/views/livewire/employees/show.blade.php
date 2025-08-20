@@ -32,6 +32,7 @@
             ],
             'rows' => $employee->hours,
             'showMonthSelector' => true,
+            'editRoute' => 'hours.edit'
         ])
     @endif
 </section>
