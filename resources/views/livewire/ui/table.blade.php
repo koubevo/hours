@@ -38,7 +38,13 @@
                                 @php
                                     $value = data_get($row, $column['key']);
                                 @endphp
-                                {{ $value }}
+                                @if (isset($column['route']))
+                                    <a href="{{ route($column['route'], $row['employee_id']) }}" class="hover:text-gray-800">
+                                        {{ $value }}    
+                                    </a>
+                                @else
+                                    {{ $value }}                                    
+                                @endif
                             </flux:text>
                         </td>
                     @endforeach

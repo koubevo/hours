@@ -9,7 +9,7 @@
     @if (!empty($hours))
         @livewire('ui.table', [
             'columns' => [
-                ['label' => 'Kdo', 'key' => 'employee.name'],
+                ['label' => 'Kdo', 'key' => 'employee.name', 'route' => 'employee.show'],
                 ['label' => 'Datum', 'key' => 'formatted_work_date', 'print_only' => true],
                 ['label' => 'Od', 'key' => 'start_time'],
                 ['label' => 'Do', 'key' => 'end_time'],
