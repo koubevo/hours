@@ -11,15 +11,6 @@
     </div>
     <div>
         <flux:field>
-            <flux:label>Přezdívka</flux:label>
-
-            <flux:input id="nickname" type="text" wire:model="nickname" />
-
-            <flux:error name="nickname" />
-        </flux:field>
-    </div>
-    <div>
-        <flux:field>
             <flux:label>Hodinová sazba</flux:label>
             <flux:input.group>
                 <flux:input id="hour_rate" type="number" wire:model="hour_rate" />

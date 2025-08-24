@@ -1,6 +1,6 @@
 @extends('livewire.layouts.admin-layout')
 
-@section('title', !empty($employee->nickname) ? $employee->nickname : $employee->name)
+@section('title', $employee->name)
 
 @section('content')
 
@@ -25,6 +25,7 @@
     @if (!empty($employee->hours))
         @livewire('ui.table', [
             'columns' => [
+                ['label' => 'Kdo', 'key' => 'employee.name', 'print_only' => true],
                 ['label' => 'Datum', 'key' => 'formatted_work_date'],
                 ['label' => 'Od', 'key' => 'start_time'],
                 ['label' => 'Do', 'key' => 'end_time'],

@@ -47,12 +47,137 @@
     }
 }
 
+@media print {
+    body {
+        visibility: hidden;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        background-color: white !important;
+        font-family: Arial, sans-serif !important;
+        font-size: 10pt !important;
+    }
+
+    #printableTableContainer {
+        visibility: visible;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 1cm !important;
+        box-shadow: none !important;
+        border: none !important;
+        color: black !important;
+        background-color: white !important;
+        z-index: 9999;
+    }
+
+    #printableTableContainer flux\:text,
+    #printableTableContainer flux\:heading,
+    #printableTableContainer th,
+    #printableTableContainer td {
+        color: black !important;
+        font-family: Arial, sans-serif !important;
+        font-size: 10pt !important;
+    }
+
+    #printableTableContainer flux\:heading {
+        font-weight: bold !important;
+    }
+
+    #printableTableContainer table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        margin-bottom: 0 !important;
+    }
+
+    #printableTableContainer thead {
+        border-bottom: 2px solid #555 !important;
+    }
+
+    #printableTableContainer thead th {
+        background-color: #f0f0f0 !important;
+        padding: 10px 8px !important;
+        text-align: left !important;
+        font-weight: bold !important;
+    }
+
+    #printableTableContainer tbody tr {
+        border-bottom: 1px solid #ddd !important;
+        page-break-inside: avoid;
+    }
+
+    #printableTableContainer tbody tr:nth-child(even) {
+        background-color: #f9f9f9 !important;
+    }
+
+    #printableTableContainer tbody tr:nth-child(odd) {
+        background-color: white !important;
+    }
+
+    #printableTableContainer tbody tr:last-child {
+        border-bottom: none !important;
+    }
+
+    #printableTableContainer tbody td {
+        padding: 8px !important;
+        vertical-align: top !important;
+    }
+
+    #printableTableContainer tfoot {
+        border-top: 2px solid #555 !important;
+        font-weight: bold !important;
+    }
+
+    #printableTableContainer tfoot th,
+    #printableTableContainer tfoot td {
+        padding: 10px 8px !important;
+        text-align: left !important;
+        background-color: #f0f0f0 !important;
+    }
+
+    #printableTableContainer flux\:text,
+    #printableTableContainer flux\:heading {
+        line-height: 1.2 !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #printableTableContainer .flex.justify-around.pb-2,
+    #printableTableContainer .mt-4 {
+        display: none !important;
+    }
+
+    #printableTableContainer.border {
+        border: none !important;
+    }
+
+    #printableTableContainer.rounded-lg {
+        border-radius: 0 !important;
+    }
+
+    #printableTableContainer.p-8 {
+        padding: 0 !important;
+    }
+
+    #printableTableContainer tbody tr td[colspan] {
+        text-align: center !important;
+        font-style: italic !important;
+        padding: 20px !important;
+        color: #666 !important;
+        border-bottom: none !important;
+    }
+}
+
 [data-flux-field]:not(ui-radio, ui-checkbox) {
     @apply grid gap-2;
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],

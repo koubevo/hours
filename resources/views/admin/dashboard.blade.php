@@ -10,6 +10,7 @@
         @livewire('ui.table', [
             'columns' => [
                 ['label' => 'Kdo', 'key' => 'employee.name'],
+                ['label' => 'Datum', 'key' => 'formatted_work_date', 'print_only' => true],
                 ['label' => 'Od', 'key' => 'start_time'],
                 ['label' => 'Do', 'key' => 'end_time'],
                 ['label' => 'Částka', 'key' => 'earning', 'countable' => true],

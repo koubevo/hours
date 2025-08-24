@@ -1,7 +1,7 @@
 @props(['employee'])
 <a href="{{ $employee->hasHoursToday() ? route('employee.show', ['employee' => $employee->id]) : route('hours.create', ['employee' => $employee->id]) }}" class="block">
     <x-card>
-        <flux:heading>{{ !empty($employee->nickname) ? $employee->nickname : $employee->name }}</flux:heading>
+        <flux:heading>{{ $employee->name }}</flux:heading>
         <flux:text class="mt-2">
             @if ($employee->hasHoursToday())
                 <flux:badge color="green" size="sm" class="me-2">Vyplněno</flux:badge>

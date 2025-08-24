@@ -9,20 +9,17 @@ class EditEmployeeForm extends Component
 {
     public Employee $employee;
     public string $name;
-    public ?string $nickname;
     public ?int $hour_rate;
 
     public function mount(Employee $employee)
     {
         $this->employee = $employee;
         $this->name = $employee->name;
-        $this->nickname = $employee->nickname;
         $this->hour_rate = $employee->hour_rate;
     }
 
     protected $rules = [
         'name' => 'required|string|max:255',
-        'nickname' => 'nullable|string|max:255',
         'hour_rate' => 'nullable|integer|min:1|max:1000',
     ];
 
@@ -32,7 +29,6 @@ class EditEmployeeForm extends Component
 
         $this->employee->update([
             'name' => $this->name,
-            'nickname' => $this->nickname ?? null,
             'hour_rate' => $this->hour_rate ?? null,
         ]);
 

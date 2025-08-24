@@ -1,41 +1,39 @@
-<div class="border rounded-lg p-8">
+<div class="border rounded-lg p-8" id="printableTableContainer">
     <table class="w-full">
         <colgroup>
             <col class="w-4"/>
             @foreach ($columns as $column)
-                <col>
+                <col class="{{ isset($column['print_only']) && $column['print_only'] ? 'hidden print:table-column' : '' }}">
             @endforeach
-            <col class="w-10"/>
-            <col class="w-10"/>
+            <col class="w-10 print:hidden"/>
+            <col class="w-10 print:hidden"/>
         </colgroup>
         <thead class="border-b-2 border-gray-500">
             <tr>
-                <th class="text-start py-4 ps-2">
+                <th class="text-start py-4 px-2">
                     <flux:heading>#</flux:heading>
                 </th>
                 @foreach ($columns as $column)
-                    <th class="text-start py-4">
+                    <th class="text-start py-4 {{ isset($column['print_only']) && $column['print_only'] ? 'hidden print:table-cell' : '' }}">
                         <flux:heading>
                             {{ $column['label'] }}
                         </flux:heading>
                     </th>
                 @endforeach
-                <th class="text-start py-4">
-                </th>
-                <th class="text-start py-4">
-                </th>
+                <th class="text-start py-4 print:hidden"></th>
+                <th class="text-start py-4 print:hidden"></th>
             </tr>
         </thead>
         <tbody>
             @forelse ($rows as $row)
-                <tr class="hover:bg-gray-100">
+                <tr class="hover:bg-gray-100 print:hover:bg-transparent">
                     <td class="py-3 border-b ps-2">
                         <flux:text>
                             {{ $loop->index + 1 }}
                         </flux:text>
                     </td>
                     @foreach ($columns as $column)
-                        <td class="py-3 border-b">
+                        <td class="py-3 border-b {{ isset($column['print_only']) && $column['print_only'] ? 'hidden print:table-cell' : '' }}">
                             <flux:text>
                                 @php
                                     $value = data_get($row, $column['key']);
@@ -44,12 +42,12 @@
                             </flux:text>
                         </td>
                     @endforeach
-                    <td class="py-3 border-b text-end pe-2">
+                    <td class="py-3 border-b text-end pe-2 print:hidden">
                         <a href="{{ route($editRoute, $row->id) }}" class="cursor-pointer inline-flex justify-end w-full">
                             <flux:icon name="pencil" class="size-4"/>
                         </a>
                     </td>
-                    <td class="py-3 border-b text-end pe-2">
+                    <td class="py-3 border-b text-end pe-2 print:hidden">
                         <button class="cursor-pointer inline-flex justify-end w-full">
                             <flux:icon name="trash" class="size-4"/>
                         </button>
@@ -81,16 +79,27 @@
                                 </flux:heading>
                             </th>
                         @else
-                            <th></th>
+                            <th class="{{ isset($column['print_only']) && $column['print_only'] ? 'hidden print:table-cell' : '' }}"></th>
                         @endif
                     @endforeach
                 </tr>
             @endif
         </tfoot>
     </table>
-    @if (!empty($rows))
-        <flux:text class="mt-4" size="sm">
-            Počet výsledků: {{ count($rows) }}.
-        </flux:text>
-    @endif
+    <div class="flex justify-between print:hidden mt-8">
+        <div>
+            @if (!empty($rows))
+                <flux:text class="mt-4" size="sm">
+                    Počet výsledků: {{ count($rows) }}.
+                </flux:text>
+            @endif
+        </div>
+        <div></div>
+        <div class="flex gap-2 justify-end">
+            <flux:button class="cursor-pointer" onclick="window.print()">
+                <flux:icon name="printer" class="size-4"></flux:icon>
+                Vytisknout
+            </flux:button>
+        </div>
+    </div>
 </div>

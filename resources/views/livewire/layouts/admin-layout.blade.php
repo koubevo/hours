@@ -27,7 +27,7 @@
                                 <flux:badge color="{{ $employee->hasHoursToday() ? 'green' : 'red' }}" size="sm" style="padding: 4px !important"
                                     class="me-2 mb-0.5">
                                 </flux:badge>
-                                {{ !empty($employee->nickname) ? $employee->nickname : $employee->name }}
+                                {{ $employee->name }}
                             </div>
                         </div>
                     </flux:navlist.item>
