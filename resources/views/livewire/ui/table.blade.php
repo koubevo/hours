@@ -1,5 +1,5 @@
-<div class="border rounded-lg p-8" id="printableTableContainer">
-    <table class="w-full">
+<div class="border rounded-lg p-8 overflow-x-auto" id="printableTableContainer">
+    <table class="w-full min-w-[800px]">
         <colgroup>
             <col class="w-4"/>
             @foreach ($columns as $column)
@@ -42,6 +42,11 @@
                                     <a href="{{ route($column['route'], $row['employee_id']) }}" class="hover:text-gray-800">
                                         {{ $value }}    
                                     </a>
+                                @elseif(isset($column['shorten']) && $column['shorten'])
+                                    @php
+                                        $shortValue = Str::limit($value, 30, '...');
+                                    @endphp
+                                    <span title="{{ $value }}">{{ $shortValue }}</span>
                                 @else
                                     {{ $value }}                                    
                                 @endif
@@ -101,7 +106,7 @@
             @endif
         </div>
         <div></div>
-        <div class="flex gap-2 justify-end">
+        <div class="flex gap-2 justify-end hidden md:block">
             <flux:button class="cursor-pointer" onclick="window.print()">
                 <flux:icon name="printer" class="size-4"></flux:icon>
                 Vytisknout
