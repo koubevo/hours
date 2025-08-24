@@ -1,5 +1,5 @@
 <div class="border rounded-lg p-8 overflow-x-auto" id="printableTableContainer">
-    <table class="w-full min-w-[800px]">
+    <table class="w-full min-w-[800px] print:min-w-[200px]">
         <colgroup>
             <col class="w-4"/>
             @foreach ($columns as $column)
