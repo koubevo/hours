@@ -22,21 +22,21 @@
             ]
         ])
 
-            @if (!empty($employee->hours))
-                @livewire('ui.table', [
-                    'columns' => [
-                        ['label' => 'status', 'key' => 'status', 'status_color' => true],
-                        ['label' => 'Kdo', 'key' => 'employee.name', 'print_only' => true],
-                        ['label' => 'Datum', 'key' => 'formatted_work_date'],
-                        ['label' => 'Od', 'key' => 'start_time'],
-                        ['label' => 'Do', 'key' => 'end_time'],
-                        ['label' => 'Částka', 'key' => 'earning', 'countable' => true],
-                    ],
-                    'rows' => $employee->hours,
-                    'showMonthSelector' => true,
-                    'editRoute' => 'hours.edit'
-                ])
-            @endif
-        </section>
+                @if (!empty($employee->hours))
+                    @livewire('ui.table', [
+                        'columns' => [
+                            ['label' => '', 'key' => 'status', 'status_color' => true],
+                            ['label' => 'Kdo', 'key' => 'employee.name', 'print_only' => true],
+                            ['label' => 'Datum', 'key' => 'formatted_work_date'],
+                            ['label' => 'Od', 'key' => 'start_time'],
+                            ['label' => 'Do', 'key' => 'end_time'],
+                            ['label' => 'Částka', 'key' => 'earning', 'countable' => true],
+                        ],
+                        'rows' => $employee->hours,
+                        'showMonthSelector' => true,
+                        'editRoute' => 'hours.edit'
+                    ])
+                @endif
+            </section>
 
 @endsection
