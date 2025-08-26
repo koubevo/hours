@@ -79,6 +79,7 @@ class HoursForm extends Component
             ->toArray();
 
         if (isset($data['end_time'])) {
+            $data['status'] = HoursStatus::Completed;
             $data['earning'] = HoursCalculator::calculateEarning(
                 $validated['start_time'],
                 $validated['end_time'],

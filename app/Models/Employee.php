@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\HoursStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -35,7 +36,7 @@ class Employee extends Authenticatable
     {
         return $this->hours()
             ->where('work_date', Carbon::today()->toDateString())
-            ->whereNull('end_time')
+            ->where('status', '=', HoursStatus::Draft)
             ->exists();
     }
 
