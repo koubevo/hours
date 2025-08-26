@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Enum\HoursStatus;
 use App\Models\Hour;
 use App\Models\Employee;
 use App\Support\HoursCalculator;
@@ -16,7 +17,7 @@ class HoursForm extends Component
     public $end_time;
     public $description;
     public $hour_rate;
-    
+
     // For edit mode
     public $hour;
     public $hourId;
@@ -26,15 +27,15 @@ class HoursForm extends Component
         'employee' => 'required|exists:employees,id',
         'work_date' => 'required|date',
         'start_time' => 'required|date_format:H:i',
-        'end_time' => 'date_format:H:i',
+        'end_time' => 'nullable|date_format:H:i',
         'description' => 'nullable|string|max:10000',
-        'hour_rate' => 'nullable|integer|min:1|max:100000',
+        'hour_rate' => 'nullable|integer|min:0|max:100000',
     ];
 
     public function mount($employee = null, $date = null, $hour_id = null)
     {
         $this->employees = Employee::all();
-        
+
         if ($hour_id) {
             // Edit mode
             $this->isEditMode = true;
@@ -47,7 +48,7 @@ class HoursForm extends Component
             $this->employee = $employee;
             $this->work_date = $date ?: now()->format('Y-m-d');
         }
-        
+
         if ($this->employee) {
             $this->updateHourRate();
         }
@@ -72,17 +73,20 @@ class HoursForm extends Component
     {
         $validated = $this->validate();
 
-        $earning = HoursCalculator::calculateEarning(
-            $validated['start_time'], 
-            $validated['end_time'], 
-            $validated['hour_rate'] ?? 0
-        );
-
         $data = collect($validated)
             ->except(['hour_rate', 'employee'])
             ->put('employee_id', $validated['employee'])
-            ->put('earning', $earning)
             ->toArray();
+
+        if (isset($data['end_time'])) {
+            $data['earning'] = HoursCalculator::calculateEarning(
+                $validated['start_time'],
+                $validated['end_time'],
+                $validated['hour_rate'] ?? 0
+            );
+        } else {
+            $data['status'] = HoursStatus::Draft;
+        }
 
         if ($this->isEditMode) {
             $this->hour->update($data);

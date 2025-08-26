@@ -34,7 +34,7 @@
         </div>
         <div>
             <flux:field>
-                <flux:label>Konec *</flux:label>
+                <flux:label>Konec</flux:label>
 
                 <flux:input id="end_time" type="time" wire:model="end_time" />
 
@@ -61,9 +61,9 @@
             </flux:field>
         </div>
     </div>
-    
+
     <flux:text class="mt-2">* Povinné pole</flux:text>
-    
+
     <flux:button class="cursor-pointer mt-2" type="submit" variant="primary">
         {{ $isEditMode ? 'Uložit změny' : 'Přidat' }}
     </flux:button>

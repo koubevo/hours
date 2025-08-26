@@ -14,7 +14,8 @@ class Hour extends Model
         'start_time',
         'end_time',
         'earning',
-        'description'
+        'description',
+        'status'
     ];
 
     protected $appends = ['formatted_work_date'];
