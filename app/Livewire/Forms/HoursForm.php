@@ -26,7 +26,7 @@ class HoursForm extends Component
         'employee' => 'required|exists:employees,id',
         'work_date' => 'required|date',
         'start_time' => 'required|date_format:H:i',
-        'end_time' => 'required|date_format:H:i',
+        'end_time' => 'date_format:H:i',
         'description' => 'nullable|string|max:10000',
         'hour_rate' => 'nullable|integer|min:1|max:100000',
     ];
