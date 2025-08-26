@@ -34,7 +34,6 @@
                     </td>
                     @foreach ($columns as $column)
                         <td class="py-3 border-b {{ isset($column['print_only']) && $column['print_only'] ? 'hidden print:table-cell' : '' }}">
-                            @dump($row)
                             <flux:text>
                                 @php
                                     $value = data_get($row, $column['key']);
