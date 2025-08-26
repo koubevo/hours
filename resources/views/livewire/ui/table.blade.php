@@ -99,7 +99,7 @@
     </table>
     <div class="flex justify-between print:hidden mt-8">
         <div>
-            @if (!empty($rows))
+            @if (count($rows) > 0)
                 <flux:text class="mt-4" size="sm">
                     Počet výsledků: {{ count($rows) }}.
                 </flux:text>
@@ -107,10 +107,12 @@
         </div>
         <div></div>
         <div class="flex gap-2 justify-end hidden md:block">
-            <flux:button class="cursor-pointer" onclick="window.print()">
-                <flux:icon name="printer" class="size-4"></flux:icon>
-                Vytisknout
-            </flux:button>
+            @if (count($rows) > 0)
+                <flux:button class="cursor-pointer" onclick="window.print()">
+                    <flux:icon name="printer" class="size-4"></flux:icon>
+                    Vytisknout
+                </flux:button>
+            @endif
         </div>
     </div>
 </div>
