@@ -9,6 +9,7 @@
     @if (!empty($hours))
         @livewire('ui.table', [
             'columns' => [
+                ['label' => '', 'key' => 'status', 'status_color' => true],
                 ['label' => 'Kdo', 'key' => 'employee.name', 'route' => 'employee.show'],
                 ['label' => 'Datum', 'key' => 'formatted_work_date', 'print_only' => true],
                 ['label' => 'Od', 'key' => 'start_time'],
@@ -22,6 +23,6 @@
         ])
     @endif
 
-    <!-- TODO: calendar -->
+            <!-- TODO: calendar -->
 
 @endsection
