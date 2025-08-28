@@ -83,12 +83,12 @@
                                     <span title="{{ $value }}">{{ $shortValue }}</span>
                                 @elseif (isset($column['status_color']) && $column['status_color'])
                                     @if ($value === App\Enum\HoursStatus::Completed->value)
-                                        <flux:badge color="green" size="sm" style="padding: 4px !important"
-                                            class="me-2 mb-0.5">
+                                        <flux:badge size="sm" style="padding: 4px !important; background-color: #16a34a;"
+                                            class="me-2 mb-0.5 opacity-70">
                                         </flux:badge>      
                                     @else
-                                        <flux:badge color="amber" size="sm" style="padding: 4px !important"
-                                            class="me-2 mb-0.5">
+                                        <flux:badge color="amber" size="sm" style="padding: 4px !important; background-color: #f59e0b;"
+                                            class="me-2 mb-0.5 opacity-70">
                                         </flux:badge>                                 
                                     @endif
                                 @else

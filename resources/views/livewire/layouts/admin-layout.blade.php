@@ -23,18 +23,18 @@
                 @foreach($allEmployees as $employee)
                     @php
                         if ($employee->hasDraftHoursToday()) {
-                            $color = 'amber';
+                            $color = '#f59e0b';
                         } elseif ($employee->hasHoursToday()) {
-                            $color = 'green';
+                            $color = '#16a34a';
                         } else {
-                            $color = 'red';
+                            $color = '#ef4444';
                         }
                     @endphp
                     <flux:navlist.item href="{{ route('employee.show', ['employee' => $employee->id]) }}">
                         <div class="flex flex-row justify-between items-center">
                             <div>
-                                <flux:badge color="{{ $color }}" size="sm" style="padding: 4px !important"
-                                    class="me-2 mb-0.5">
+                                <flux:badge class="me-2 mb-0.5 opacity-70" size="sm"
+                                    style="padding: 4px !important; background-color: {{ $color }};">
                                 </flux:badge>
                                 {{ $employee->name }}
                             </div>

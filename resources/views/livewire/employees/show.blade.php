@@ -27,9 +27,6 @@
                     @if ($employee->hasDraftHoursToday())
                         <flux:badge color="amber" size="sm">Rozděláno</flux:badge>
                     @endif
-                    @if (!$employee->hasHoursToday())    
-                        <flux:badge color="red" size="sm">Nevyplněno</flux:badge>
-                    @endif
                     <flux:text>Dnešní hodiny</flux:text>
                 </div>
                 <flux:heading size="xl">
@@ -37,6 +34,9 @@
                         @foreach ($employee->todayHours() as $todayHours)
                             {{ $todayHours->start_time }} - {{ $todayHours->end_time ?? '??' }}@if (!$loop->last), @endif
                         @endforeach
+                    @endif
+                    @if (!$employee->hasHoursToday())    
+                        <span class="text-red-500">Nevyplněno</span>
                     @endif
                 </flux:heading>
             </x-card>
