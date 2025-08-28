@@ -78,7 +78,7 @@ class HoursForm extends Component
             ->put('employee_id', $validated['employee'])
             ->toArray();
 
-        if (isset($data['end_time'])) {
+        if (isset($data['end_time']) && $data['end_time'] !== "") {
             $data['status'] = HoursStatus::Completed;
             $data['earning'] = HoursCalculator::calculateEarning(
                 $validated['start_time'],
@@ -86,6 +86,8 @@ class HoursForm extends Component
                 $validated['hour_rate'] ?? 0
             );
         } else {
+            $data['end_time'] = null;
+            $data['earning'] = 0;
             $data['status'] = HoursStatus::Draft;
         }
 

@@ -1,6 +1,14 @@
 @props(['employee'])
-<a href="{{ $employee->hasHoursToday() ? route('employee.show', ['employee' => $employee->id]) : route('hours.create', ['employee' => $employee->id]) }}"
-    class="block">
+@php
+    if ($employee->hasDraftHoursToday()) {
+        $route = route('hours.edit', $employee->getDraftHoursToday());
+    } elseif ($employee->hasHoursToday()) {
+        $route = route('employee.show', ['employee' => $employee->id]);
+    } else {
+        $route = route('hours.create', ['employee' => $employee->id]);
+    }
+@endphp
+<a href="{{ $route }}" class="block">
     <x-card>
         <flux:heading>{{ $employee->name }}</flux:heading>
         <flux:text class="mt-2">

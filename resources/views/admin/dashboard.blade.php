@@ -22,7 +22,4 @@
             'editRoute' => 'hours.edit'
         ])
     @endif
-
-                <!-- TODO: calendar -->
-
 @endsection
