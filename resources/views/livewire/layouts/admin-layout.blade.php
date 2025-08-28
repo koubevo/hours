@@ -14,17 +14,26 @@
     <flux:sidebar sticky stashable
         class="bg-zinc-50 dark:bg-zinc-900 border-r rtl:border-r-0 rtl:border-l border-zinc-200 dark:border-zinc-700">
         <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
-        <flux:brand href="{{ route('admin.dashboard') }}" logo="{{ asset('storage/logo.png') }}" name="{{ env('COMPANY_NAME') }}"
-            class="px-2 dark:hidden" />
+        <flux:brand href="{{ route('admin.dashboard') }}" logo="{{ asset('storage/logo.png') }}"
+            name="{{ env('COMPANY_NAME') }}" class="px-2 dark:hidden" />
         <flux:navlist variant="outline">
             <flux:navlist.item icon="home" href="{{ route('admin.dashboard') }}">Domů</flux:navlist.item>
             <flux:navlist.item icon="plus" href="{{ route('hours.create') }}">Přidat hodiny</flux:navlist.item>
             <flux:navlist.group expandable heading="Zaměstnanci" class="hidden lg:grid">
                 @foreach($allEmployees as $employee)
+                    @php
+                        if ($employee->hasDraftHoursToday()) {
+                            $color = 'amber';
+                        } elseif ($employee->hasHoursToday()) {
+                            $color = 'green';
+                        } else {
+                            $color = 'red';
+                        }
+                    @endphp
                     <flux:navlist.item href="{{ route('employee.show', ['employee' => $employee->id]) }}">
                         <div class="flex flex-row justify-between items-center">
                             <div>
-                                <flux:badge color="{{ $employee->hasHoursToday() ? 'green' : 'red' }}" size="sm" style="padding: 4px !important"
+                                <flux:badge color="{{ $color }}" size="sm" style="padding: 4px !important"
                                     class="me-2 mb-0.5">
                                 </flux:badge>
                                 {{ $employee->name }}
@@ -48,7 +57,7 @@
         <flux:separator class="my-2" variant="subtle" />
         @yield('content')
     </flux:main>
-    
+
     @if (session()->has('success'))
         @livewire('ui.success-toast', [
             'message' => session('success')

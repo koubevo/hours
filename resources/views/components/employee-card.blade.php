@@ -1,7 +1,7 @@
 @props(['employee'])
 @php
     if ($employee->hasDraftHoursToday()) {
-        $route = route('hours.edit', $employee->getDraftHoursToday());
+        $route = route('hours.edit', $employee->firstDraftHoursToday());
     } elseif ($employee->hasHoursToday()) {
         $route = route('employee.show', ['employee' => $employee->id]);
     } else {

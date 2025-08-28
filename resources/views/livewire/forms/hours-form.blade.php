@@ -71,7 +71,7 @@
             @endphp
             <div class="w-full md:w-1/3 self-start md:mt-6">
                 <x-card>
-                    <flux:text>Odpracované hodiny</flux:text>
+                    <flux:text class="mb-1">Odpracované hodiny</flux:text>
                     <flux:heading size="xl">
                         @php
                             $hours = intdiv($minutes, 60);
@@ -80,7 +80,7 @@
                         {{ $hours }}h{{ $mins > 0 ? ' ' . $mins . 'min' : '' }}
                     </flux:heading>
 
-                    <flux:text class="mt-4">Částka</flux:text>
+                    <flux:text class="mt-6 mb-1">Částka</flux:text>
                     <flux:heading size="xl">
                         {{ $earning }} Kč
                     </flux:heading>

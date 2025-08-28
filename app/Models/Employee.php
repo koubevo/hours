@@ -40,7 +40,7 @@ class Employee extends Authenticatable
             ->exists();
     }
 
-    public function getDraftHoursToday(): ?Hour
+    public function firstDraftHoursToday(): ?Hour
     {
         return $this->hours()
             ->where('work_date', Carbon::today()->toDateString())
