@@ -6,7 +6,7 @@
 
     <x-today-hours :employees="$employees" />
 
-    @if (!empty($hours))
+    @if (count($hours) > 0)
         @livewire('ui.table', [
             'columns' => [
                 ['label' => '', 'key' => 'status', 'status_color' => true],
@@ -23,6 +23,6 @@
         ])
     @endif
 
-            <!-- TODO: calendar -->
+                <!-- TODO: calendar -->
 
 @endsection
