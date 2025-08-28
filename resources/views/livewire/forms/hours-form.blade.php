@@ -67,7 +67,8 @@
         @if($start_time && $end_time)
             @php
                 $minutes = App\Support\HoursCalculator::calculateMinutesBetween($start_time, $end_time);
-                $earning = App\Support\HoursCalculator::calculateEarningByMinutes($minutes, $hour_rate ?? 0);
+                $hour_rate = is_numeric($hour_rate) && is_int((int) $hour_rate) ? (int) $hour_rate : 0;
+                $earning = App\Support\HoursCalculator::calculateEarningByMinutes($minutes, $hour_rate);
             @endphp
             <div class="w-full md:w-1/3 self-start md:mt-6">
                 <x-card>
