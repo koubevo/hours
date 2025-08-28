@@ -1,66 +1,94 @@
 <form wire:submit.prevent="save">
-    <div class="w-full md:w-2/3 mt-4 space-y-4">
-        <div>
-            <flux:field>
-                <flux:label>
-                    Zaměstnanec *
-                </flux:label>
+    <div class="flex flex-col md:flex-row gap-4 mt-4">
+        <div class="w-full md:w-2/3 space-y-4">
+            <div>
+                <flux:field>
+                    <flux:label>
+                        Zaměstnanec *
+                    </flux:label>
 
-                <flux:select wire:model="employee" wire:change="updateHourRate" placeholder="Vyber zaměstnance">
-                    @foreach ($employees as $employee)
-                        <flux:select.option id="{{ $employee->id }}" value="{{ $employee->id }}">{{ $employee->name }}
-                        </flux:select.option>
-                    @endforeach
-                </flux:select>
-            </flux:field>
+                    <flux:select wire:model="employee" wire:change="updateHourRate">
+                        <flux:select.option value="0" disabled>Zaměstnanec</flux:select.option>
+                        @foreach ($employees as $employee)
+                            <flux:select.option id="{{ $employee->id }}" value="{{ $employee->id }}">
+                                {{ $employee->name }}
+                            </flux:select.option>
+                        @endforeach
+                    </flux:select>
+                </flux:field>
+            </div>
+            <div>
+                <flux:field>
+                    <flux:label>Datum *</flux:label>
+
+                    <flux:input id="work_date" type="date" wire:model="work_date" />
+
+                    <flux:error name="work_date" />
+                </flux:field>
+            </div>
+            <div>
+                <flux:field>
+                    <flux:label>Začátek *</flux:label>
+
+                    <flux:input id="start_time" type="time" wire:model.live="start_time" />
+
+                    <flux:error name="start_time" />
+                </flux:field>
+            </div>
+            <div>
+                <flux:field>
+                    <flux:label>Konec</flux:label>
+
+                    <flux:input id="end_time" type="time" wire:model.live="end_time" />
+
+                    <flux:error name="end_time" />
+                </flux:field>
+            </div>
+            <div>
+                <flux:field>
+                    <flux:label>Popis práce</flux:label>
+
+                    <flux:textarea id="description" type="text" wire:model="description" placeholder="Co se dělalo?" />
+
+                    <flux:error name="description" />
+                </flux:field>
+            </div>
+            <div>
+                <flux:field>
+                    <flux:label>Hodinová sazba</flux:label>
+                    <flux:input.group>
+                        <flux:input id="hour_rate" type="number" wire:model.live="hour_rate" />
+                        <flux:input.group.suffix>Kč</flux:input.group.suffix>
+                    </flux:input.group>
+                    <flux:error name="hour_rate" />
+                </flux:field>
+            </div>
         </div>
-        <div>
-            <flux:field>
-                <flux:label>Datum *</flux:label>
+        @if($start_time && $end_time)
+            @php
+                $minutes = App\Support\HoursCalculator::calculateMinutesBetween($start_time, $end_time);
+                $earning = App\Support\HoursCalculator::calculateEarningByMinutes($minutes, $hour_rate ?? 0);
+            @endphp
+            <div class="w-full md:w-1/3 self-start md:mt-6">
+                <x-card>
+                    <flux:text>Odpracované hodiny</flux:text>
+                    <flux:heading size="xl">
+                        @php
+                            $hours = intdiv($minutes, 60);
+                            $mins = $minutes % 60;
+                        @endphp
+                        {{ $hours }}h{{ $mins > 0 ? ' ' . $mins . 'min' : '' }}
+                    </flux:heading>
 
-                <flux:input id="work_date" type="date" wire:model="work_date" />
-
-                <flux:error name="work_date" />
-            </flux:field>
-        </div>
-        <div>
-            <flux:field>
-                <flux:label>Začátek *</flux:label>
-
-                <flux:input id="start_time" type="time" wire:model="start_time" />
-
-                <flux:error name="start_time" />
-            </flux:field>
-        </div>
-        <div>
-            <flux:field>
-                <flux:label>Konec</flux:label>
-
-                <flux:input id="end_time" type="time" wire:model="end_time" />
-
-                <flux:error name="end_time" />
-            </flux:field>
-        </div>
-        <div>
-            <flux:field>
-                <flux:label>Popis práce</flux:label>
-
-                <flux:textarea id="description" type="text" wire:model="description" placeholder="Co se dělalo?" />
-
-                <flux:error name="description" />
-            </flux:field>
-        </div>
-        <div>
-            <flux:field>
-                <flux:label>Hodinová sazba</flux:label>
-                <flux:input.group>
-                    <flux:input id="hour_rate" type="number" wire:model="hour_rate" />
-                    <flux:input.group.suffix>Kč</flux:input.group.suffix>
-                </flux:input.group>
-                <flux:error name="hour_rate" />
-            </flux:field>
-        </div>
+                    <flux:text class="mt-4">Částka</flux:text>
+                    <flux:heading size="xl">
+                        {{ $earning }} Kč
+                    </flux:heading>
+                </x-card>
+            </div>
+        @endif
     </div>
+
 
     <flux:text class="mt-2">* Povinné pole</flux:text>
 

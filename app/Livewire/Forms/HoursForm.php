@@ -45,7 +45,7 @@ class HoursForm extends Component
             $this->fill($this->hour->except(['employee_id']));
         } else {
             // Create mode
-            $this->employee = $employee;
+            $this->employee = $employee ? $employee : 0;
             $this->work_date = $date ?: now()->format('Y-m-d');
         }
 
