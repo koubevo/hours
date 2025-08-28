@@ -28,7 +28,11 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        $employee->load(['hours']);
+        $employee->load([
+            'hours' => function ($query) {
+                $query->orderBy('work_date', 'desc');
+            }
+        ]);
         return view('livewire.employees.show', ['employee' => $employee]);
     }
 
