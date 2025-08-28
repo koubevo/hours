@@ -1,4 +1,38 @@
 <div class="border rounded-lg p-8 overflow-x-auto" id="printableTableContainer">
+    @if ($showMonthSelector)
+        <div class="flex items-center justify-between gap-4 mb-6 print:hidden">
+            <div></div>
+            <div class="flex items-center gap-2">
+                <flux:select wire:model.live="selectedMonth" name="selectedMonth" wire:key="month-select">
+                    <flux:select.option value="">Vše</flux:select.option>
+                    @php
+                        $availableMonths = collect($rows)
+                            ->filter(fn($r) => !empty($r->work_date))
+                            ->map(fn($r) => \Carbon\Carbon::parse($r->work_date)->format('Y-m'))
+                            ->unique()
+                            ->sortDesc()
+                            ->values();
+                    @endphp
+                    @foreach ($availableMonths as $ym)
+                        <flux:select.option value="{{ $ym }}">{{ Str::ucfirst(\Carbon\Carbon::createFromFormat('Y-m-d', $ym.'-01')->locale('cs')->translatedFormat('F Y')) }}</flux:select.option>
+                    @endforeach
+                </flux:select>
+            </div>
+        </div>
+    @endif
+
+    @php
+        $displayRows = $rows;
+        if (!empty($selectedMonth)) {
+            $displayRows = collect($rows)->filter(function ($r) use ($selectedMonth) {
+                try {
+                    return \Carbon\Carbon::parse($r->work_date)->format('Y-m') === $selectedMonth;
+                } catch (\Throwable $e) {
+                    return false;
+                }
+            })->values();
+        }
+    @endphp
     <table class="w-full min-w-[800px] print:min-w-[200px]">
         <colgroup>
             <col class="w-4"/>
@@ -25,7 +59,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($rows as $row)
+            @forelse ($displayRows as $row)
                 <tr class="hover:bg-gray-100 print:hover:bg-transparent">
                     <td class="py-3 border-b ps-2">
                         <flux:text>
@@ -85,7 +119,7 @@
             @endforelse
         </tbody>
         <tfoot>
-            @if(collect($columns)->contains(fn($col) => !empty($col['countable'])) && count($rows) > 0)
+            @if(collect($columns)->contains(fn($col) => !empty($col['countable'])) && count($displayRows) > 0)
                 <tr>
                     <th>
                         <flux:heading class="text-start py-3 ps-2">
@@ -96,7 +130,7 @@
                         @if (isset($column['countable']) && $column['countable'])
                             <th class="text-start py-3">
                                 <flux:heading>
-                                    {{ collect($rows)->sum('earning') }}
+                                    {{ collect($displayRows)->sum('earning') }}
                                 </flux:heading>
                             </th>
                         @else
@@ -109,15 +143,15 @@
     </table>
     <div class="flex justify-between print:hidden mt-8">
         <div>
-            @if (count($rows) > 0)
+            @if (count($displayRows) > 0)
                 <flux:text class="mt-4" size="sm">
-                    Počet výsledků: {{ count($rows) }}.
+                    Počet výsledků: {{ count($displayRows) }}.
                 </flux:text>
             @endif
         </div>
         <div></div>
         <div class="flex gap-2 justify-end hidden md:block">
-            @if (count($rows) > 0)
+            @if (count($displayRows) > 0)
                 <flux:button class="cursor-pointer" onclick="window.print()">
                     <flux:icon name="printer" class="size-4"></flux:icon>
                     Vytisknout
