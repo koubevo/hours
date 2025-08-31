@@ -6,22 +6,24 @@ use App\Enum\HoursStatus;
 use App\Models\Hour;
 use App\Models\Employee;
 use App\Support\HoursCalculator;
+use DateTime;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class HoursForm extends Component
 {
-    public $employees;
-    public $employee;
+    public Collection $employees;
+    public Employee|string|int $employee;
     public $work_date;
     public $start_time;
     public $end_time;
-    public $description;
-    public $hour_rate;
+    public ?string $description;
+    public ?int $hour_rate;
 
     // For edit mode
-    public $hour;
-    public $hourId;
-    public $isEditMode = false;
+    public Hour $hour;
+    public int $hourId;
+    public bool $isEditMode = false;
 
     protected $rules = [
         'employee' => 'required|exists:employees,id',

@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Payment extends Model
 {
     use SoftDeletes;
+
+    protected $fillable = [
+        'employee_id',
+        'amount',
+        'payment_date'
+    ];
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);

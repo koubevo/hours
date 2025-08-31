@@ -21,7 +21,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::resource('/hours', HoursController::class)
         ->only(['create', 'edit']);
 
-    Route::resource('/payments', PaymentController::class)
+    Route::resource('/payment', PaymentController::class)
         ->only(['index', 'create', 'edit', 'destroy']);
 });
 
