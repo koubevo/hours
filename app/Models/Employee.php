@@ -27,6 +27,11 @@ class Employee extends Authenticatable
         return $this->hasMany(Hour::class);
     }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
     public function hasHoursToday(): bool
     {
         return $this->hours()->where('work_date', Carbon::today()->toDateString())->exists();
