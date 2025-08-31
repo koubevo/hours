@@ -56,19 +56,25 @@ class PaymentForm extends Component
     {
         $validated = $this->validate();
 
-        $data = collect($validated)
-            ->except(['employee'])
-            ->put('employee_id', $validated['employee'])
-            ->toArray();
+        $debt = Employee::findOrFail($validated['employee'])->debt();
 
-        if ($this->isEditMode) {
-            $this->payment->update($data);
-            session()->flash('success', 'Platba byla aktualizována.');
+        if ($debt - $validated['amount'] >= 0) {
+            $data = collect($validated)
+                ->except(['employee'])
+                ->put('employee_id', $validated['employee'])
+                ->toArray();
+
+            if ($this->isEditMode) {
+                $this->payment->update($data);
+                session()->flash('success', 'Platba byla aktualizována.');
+            } else {
+                Payment::create($data);
+                session()->flash('success', 'Platba byla přidána.');
+            }
         } else {
-            Payment::create($data);
-            session()->flash('success', 'Platba byla přidána.');
+            session()->flash('failure', 'Platba nebyla přidána: dluh by byl záporný.');
         }
 
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('employee.show', [$validated['employee']]);
     }
 }

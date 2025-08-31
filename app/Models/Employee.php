@@ -60,4 +60,12 @@ class Employee extends Authenticatable
     {
         return $this->hours()->where('work_date', Carbon::today()->toDateString())->get();
     }
+
+    public function debt(): float
+    {
+        $sumOfPayments = $this->payments->sum('amount');
+        $sumOfEarnings = $this->hours->sum('earning');
+
+        return $sumOfEarnings - $sumOfPayments;
+    }
 }

@@ -63,6 +63,12 @@
             'message' => session('success')
         ])
     @endif
+
+    @if (session()->has('failure'))
+        @livewire('ui.failure-toast', [
+            'message' => session('failure')
+        ])
+    @endif
     
     @fluxScripts
     @livewireScripts
