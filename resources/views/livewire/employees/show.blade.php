@@ -80,7 +80,6 @@
                         ['label' => 'Částka', 'key' => 'amount', 'countable' => true, 'type' => 'currency'],
                     ],
                     'rows' => $employee->payments,
-                    'showMonthSelector' => true,
                     'editRoute' => 'payment.edit',
                     'deleteModel' => \App\Models\Payment::class,
                     'heading' => 'Platby'
