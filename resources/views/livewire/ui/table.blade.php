@@ -96,6 +96,10 @@
                                             class="me-2 mb-0.5 opacity-70">
                                         </flux:badge>                                 
                                     @endif
+                                @elseif (isset($column['type']))
+                                    @if ($column['type'] === 'currency')
+                                        {{ $value }} Kč
+                                    @endif
                                 @else
                                     {{ $value }}                                    
                                 @endif

@@ -15,7 +15,7 @@
                 ['label' => 'Od', 'key' => 'start_time'],
                 ['label' => 'Do', 'key' => 'end_time'],
                 ['label' => 'Popis', 'key' => 'description', 'shorten' => true],
-                ['label' => 'Částka', 'key' => 'earning', 'countable' => true],
+                ['label' => 'Částka', 'key' => 'earning', 'countable' => true, 'type' => 'currency'],
             ],
             'rows' => $hours,
             'showMonthSelector' => false,

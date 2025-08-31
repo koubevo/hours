@@ -63,7 +63,7 @@
                         ['label' => 'Datum', 'key' => 'formatted_work_date'],
                         ['label' => 'Od', 'key' => 'start_time'],
                         ['label' => 'Do', 'key' => 'end_time'],
-                        ['label' => 'Částka', 'key' => 'earning', 'countable' => true],
+                        ['label' => 'Částka', 'key' => 'earning', 'countable' => true, 'type' => 'currency'],
                     ],
                     'rows' => $employee->hours,
                     'showMonthSelector' => true,
@@ -77,7 +77,7 @@
                     'columns' => [
                         ['label' => 'Kdo', 'key' => 'employee.name', 'print_only' => true],
                         ['label' => 'Datum', 'key' => 'formatted_payment_date'],
-                        ['label' => 'Částka', 'key' => 'amount', 'countable' => true],
+                        ['label' => 'Částka', 'key' => 'amount', 'countable' => true, 'type' => 'currency'],
                     ],
                     'rows' => $employee->payments,
                     'showMonthSelector' => true,
