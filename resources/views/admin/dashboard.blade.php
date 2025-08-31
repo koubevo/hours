@@ -19,7 +19,8 @@
             ],
             'rows' => $hours,
             'showMonthSelector' => false,
-            'editRoute' => 'hours.edit'
+            'editRoute' => 'hours.edit',
+            'deleteModel' => \App\Models\Hour::class,
         ])
     @endif
 @endsection

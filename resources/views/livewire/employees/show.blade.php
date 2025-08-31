@@ -57,7 +57,8 @@
                 ],
                 'rows' => $employee->hours,
                 'showMonthSelector' => true,
-                'editRoute' => 'hours.edit'
+                'editRoute' => 'hours.edit',
+                'deleteModel' => \App\Models\Hour::class,
             ])
         @endif
     </section>

@@ -103,8 +103,8 @@
                         </a>
                     </td>
                     <td class="py-3 border-b text-end pe-2 print:hidden">
-                        <button class="cursor-pointer inline-flex justify-end w-full">
-                            <flux:icon name="trash" class="size-4"/>
+                        <button class="cursor-pointer inline-flex justify-end w-full" wire:click="confirmDelete({{ $row->id }})">
+                            <flux:icon name="trash" class="size-4 hover:text-red-500"/>
                         </button>
                     </td>
                 </tr>
@@ -140,7 +140,33 @@
                 </tr>
             @endif
         </tfoot>
-    </table>
+    </table>    
+    <flux:modal name="delete-row" class="md:w-[500px]" wire:model="showDeleteModal">
+        <div class="space-y-6">
+            <div>
+                <flux:heading size="lg">Smazat hodiny?</flux:heading>
+                <flux:text>Opravdu chcete smazat tyto hodiny?</flux:text>
+            </div>
+            @if ($arrayDeleteInformation)   
+                <div class="grid grid-cols-4 border-t border-b">
+                    @foreach (range(1, 4) as $i)
+                        <flux:text class="px-2 py-2 border-b">{{ $arrayDeleteInformation['label' . $i] ?? '' }}</flux:text>
+                    @endforeach
+                    @foreach (range(1, 4) as $i)
+                        <flux:text class="px-2 py-2">{{ $arrayDeleteInformation['value' . $i] ?? '' }}</flux:text>
+                    @endforeach
+                </div>
+            @endif
+            <div class="flex gap-2">
+                <flux:button wire:click="$set('showDeleteModal', false)" class="cursor-pointer">
+                    Zrušit
+                </flux:button>
+                <flux:button wire:click="deleteRow" variant="primary" color="red" class="cursor-pointer">
+                    Smazat
+                </flux:button>
+            </div>
+        </div>
+    </flux:modal>
     <div class="flex justify-between print:hidden mt-8">
         <div>
             @if (count($displayRows) > 0)
