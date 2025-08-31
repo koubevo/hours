@@ -23,7 +23,10 @@ class EmployeeController extends Controller
         $employee->load([
             'hours' => function ($query) {
                 $query->orderBy('work_date', 'desc');
-            }
+            },
+            'payments' => function ($query) {
+                $query->orderBy('payment_date', 'desc');
+            },
         ]);
         return view('livewire.employees.show', ['employee' => $employee]);
     }

@@ -47,6 +47,18 @@ class Table extends Component
                     ];
                     break;
 
+                case 'App\Models\Payment':
+                    $employee = $row->employee;
+                    $this->arrayDeleteInformation = [
+                        'label1' => 'Kdo',
+                        'label2' => 'Datum',
+                        'label3' => 'Částka',
+                        'value1' => $employee->name,
+                        'value2' => $row->formatted_payment_date,
+                        'value3' => $row->amount,
+                    ];
+                    break;
+
                 default:
                     $this->arrayDeleteInfromation = null;
             }

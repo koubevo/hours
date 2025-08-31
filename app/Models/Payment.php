@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Payment extends Model
 {
@@ -18,5 +19,10 @@ class Payment extends Model
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function getFormattedPaymentDateAttribute(): ?string
+    {
+        return $this->payment_date ? Carbon::parse($this->payment_date)->format('d.m.') : null;
     }
 }

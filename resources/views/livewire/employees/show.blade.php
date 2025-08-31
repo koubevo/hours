@@ -55,6 +55,7 @@
                     <flux:heading size="xl" class="{{ $employee->debt() > 0 ? 'text-red-500' : '' }}">{{ $employee->debt() }} Kč</flux:heading>
                 </x-card>
             </div>
+            <flux:heading size="lg">Docházka</flux:heading>
             @if (!empty($employee->hours))
                 @livewire('ui.table', [
                     'columns' => [
@@ -69,6 +70,20 @@
                     'showMonthSelector' => true,
                     'editRoute' => 'hours.edit',
                     'deleteModel' => \App\Models\Hour::class,
+                ])
+            @endif
+            <flux:heading size="lg">Platby</flux:heading>
+            @if (!empty($employee->payments))
+                @livewire('ui.table', [
+                    'columns' => [
+                        ['label' => 'Kdo', 'key' => 'employee.name', 'print_only' => true],
+                        ['label' => 'Datum', 'key' => 'formatted_payment_date'],
+                        ['label' => 'Částka', 'key' => 'amount', 'countable' => true],
+                    ],
+                    'rows' => $employee->payments,
+                    'showMonthSelector' => true,
+                    'editRoute' => 'payment.edit',
+                    'deleteModel' => \App\Models\Payment::class,
                 ])
             @endif
     </section>

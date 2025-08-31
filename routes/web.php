@@ -22,7 +22,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         ->only(['create', 'edit']);
 
     Route::resource('/payment', PaymentController::class)
-        ->only(['index', 'create', 'edit', 'destroy']);
+        ->only(['index', 'create', 'edit']);
 });
 
 require __DIR__ . '/auth.php';

@@ -58,6 +58,10 @@ class PaymentForm extends Component
 
         $debt = Employee::findOrFail($validated['employee'])->debt();
 
+        if ($this->isEditMode) {
+            $debt += $this->payment->amount;
+        }
+
         if ($debt - $validated['amount'] >= 0) {
             $data = collect($validated)
                 ->except(['employee'])

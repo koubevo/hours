@@ -37,12 +37,4 @@ class PaymentController extends Controller
             'paymentId' => $payment->id,
         ]);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Payment $payment)
-    {
-        //
-    }
 }
