@@ -148,7 +148,7 @@
                 <flux:text>Opravdu chcete smazat tyto hodiny?</flux:text>
             </div>
             @if ($arrayDeleteInformation)   
-                <div class="grid grid-cols-4 border-t border-b">
+                <div class="grid grid-cols-[1.5fr_1fr_1fr_1fr] border-t border-b">
                     @foreach (range(1, 4) as $i)
                         <flux:text class="px-2 py-2 border-b">{{ $arrayDeleteInformation['label' . $i] ?? '' }}</flux:text>
                     @endforeach
