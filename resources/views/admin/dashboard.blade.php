@@ -21,6 +21,7 @@
             'showMonthSelector' => false,
             'editRoute' => 'hours.edit',
             'deleteModel' => \App\Models\Hour::class,
+            'heading' => 'Dnešní docházka'
         ])
     @endif
 @endsection

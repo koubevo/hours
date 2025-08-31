@@ -18,6 +18,7 @@ class Table extends Component
     public ?int $rowToDeleteId = null;
     public ?string $deleteModel = null;
     public ?array $arrayDeleteInformation = null;
+    public ?string $heading = null;
 
     public function render(): View
     {

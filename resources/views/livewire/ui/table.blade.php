@@ -1,8 +1,13 @@
 <div class="border rounded-lg p-8 overflow-x-auto" id="printableTableContainer">
-    @if ($showMonthSelector)
-        <div class="flex items-center justify-between gap-4 mb-6 print:hidden">
-            <div></div>
-            <div class="flex items-center gap-2">
+    
+    <div class="flex items-center justify-between gap-4 mb-6">
+        <div>
+            @if ($heading)
+                <flux:heading>{{ $heading }}</flux:heading>
+            @endif
+        </div>
+        <div class="flex items-center gap-2 print:hidden">
+            @if ($showMonthSelector)
                 <flux:select wire:model.live="selectedMonth" name="selectedMonth" wire:key="month-select">
                     <flux:select.option value="">Vše</flux:select.option>
                     @php
@@ -17,9 +22,9 @@
                         <flux:select.option value="{{ $ym }}">{{ Str::ucfirst(\Carbon\Carbon::createFromFormat('Y-m-d', $ym.'-01')->locale('cs')->translatedFormat('F Y')) }}</flux:select.option>
                     @endforeach
                 </flux:select>
-            </div>
+            @endif    
         </div>
-    @endif
+    </div>
 
     @php
         $displayRows = $rows;
