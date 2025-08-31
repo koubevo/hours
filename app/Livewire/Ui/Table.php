@@ -55,6 +55,18 @@ class Table extends Component
 
     public function deleteRow(): void
     {
+        if (!$this->rowToDeleteId) {
+            return;
+        }
 
+        $model = $this->deleteModel;
+        $row = $model::findOrFail($this->rowToDeleteId);
+        $row->delete();
+
+        $this->showDeleteModal = false;
+        $this->rowToDeleteId = null;
+
+        session()->flash('success', 'Záznam byl úspěšně smazán.');
+        $this->redirect(request()->header('Referer'), navigate: true);
     }
 }

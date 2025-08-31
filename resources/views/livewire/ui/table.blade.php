@@ -144,8 +144,8 @@
     <flux:modal name="delete-row" class="md:w-[500px]" wire:model="showDeleteModal">
         <div class="space-y-6">
             <div>
-                <flux:heading size="lg">Smazat hodiny?</flux:heading>
-                <flux:text>Opravdu chcete smazat tyto hodiny?</flux:text>
+                <flux:heading size="lg">Smazat záznam?</flux:heading>
+                <flux:text>Opravdu chcete smazat tento záznam?</flux:text>
             </div>
             @if ($arrayDeleteInformation)   
                 <div class="grid grid-cols-[1.5fr_1fr_1fr_1fr] border-t border-b">
