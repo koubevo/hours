@@ -7,11 +7,11 @@
                         Zaměstnanec *
                     </flux:label>
 
-                    <flux:select wire:model="employee">
+                    <flux:select wire:model.live="employee">
                         <flux:select.option value="0" disabled>Zaměstnanec</flux:select.option>
-                        @foreach ($employees as $employee)
-                            <flux:select.option id="{{ $employee->id }}" value="{{ $employee->id }}">
-                                {{ $employee->name }}
+                        @foreach ($employees as $emp)
+                            <flux:select.option id="{{ $emp->id }}" value="{{ $emp->id }}">
+                                {{ $emp->name }}
                             </flux:select.option>
                         @endforeach
                     </flux:select>
@@ -30,12 +30,30 @@
                 <flux:field>
                     <flux:label>Částka (Kč) *</flux:label>
                     <flux:input.group>
-                        <flux:input id="amount" type="number" step="0.01" wire:model="amount" />
+                        <flux:input id="amount" type="number" step="0.01" wire:model.live="amount" />
                         <flux:input.group.suffix>Kč</flux:input.group.suffix>
                     </flux:input.group>
                     <flux:error name="amount" />
                 </flux:field>
             </div>
+        </div>
+        @php
+            $selectedEmployee = $employees->firstWhere('id', $employee);
+            $currentDebt = $selectedEmployee ? $selectedEmployee->debt() : 0;
+            $newDebt = $currentDebt - $amount;
+        @endphp
+        <div class="w-full md:w-1/3 self-start md:mt-6">
+            <x-card>
+                <flux:text class="mb-1">Původní dluh</flux:text>
+                <flux:heading size="xl">
+                    {{ $currentDebt }} Kč
+                </flux:heading>
+
+                <flux:text class="mb-1">Nový dluh</flux:text>
+                <flux:heading size="xl">
+                    {{ $newDebt }} Kč
+                </flux:heading>
+            </x-card>
         </div>
     </div>
 

@@ -47,6 +47,8 @@ class PaymentForm extends Component
         }
     }
 
+
+
     public function render()
     {
         return view('livewire.forms.payment-form');
