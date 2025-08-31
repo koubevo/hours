@@ -30,12 +30,4 @@ class HoursController extends Controller
             'hourId' => $hour->id,
         ]);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
