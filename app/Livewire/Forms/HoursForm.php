@@ -36,7 +36,7 @@ class HoursForm extends Component
 
     public function mount($employee = null, $date = null, $hour_id = null)
     {
-        $this->employees = Employee::all();
+        $this->employees = Employee::where('is_hidden', false)->orderBy('name')->get();
 
         if ($hour_id) {
             // Edit mode

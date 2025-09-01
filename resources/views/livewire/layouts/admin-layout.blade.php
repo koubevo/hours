@@ -44,6 +44,13 @@
                     </flux:navlist.item>
                 @endforeach
             </flux:navlist.group>
+            <flux:navlist.group expandable :expanded="false" heading="Skrytí zaměstnanci" class="grid">
+                @foreach($hiddenEmployees as $employee)
+                    <flux:navlist.item href="{{ route('employee.show', ['employee' => $employee->id]) }}">
+                        {{ $employee->name }}
+                    </flux:navlist.item>
+                @endforeach
+            </flux:navlist.group>
         </flux:navlist>
         <flux:spacer />
         <flux:navlist variant="outline">

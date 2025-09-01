@@ -24,8 +24,9 @@
                         'icon' => 'pencil'
                     ],
                     [
-                        'text' => 'Skrýt zaměstnance',
-                        'icon' => 'eye-slash'
+                        'text' => $employee->is_hidden ? 'Znovu zobrazit zaměstnance' : 'Skrýt zaměstnance',
+                        'route' => route('employee.toggleHidden', ['employee' => $employee]),
+                        'icon' => $employee->is_hidden ? 'eye' : 'eye-slash'
                     ],
                 ]
             ])

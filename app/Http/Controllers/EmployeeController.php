@@ -39,9 +39,15 @@ class EmployeeController extends Controller
         return view('components.employees.edit', ['employee' => $employee]);
     }
 
-    public function hide(Employee $employee)
+    public function toggleHidden(Employee $employee)
     {
-        //TODO
-        return;
+        $employee->update(['is_hidden' => !$employee->is_hidden]);
+        return redirect()->route('employee.show', $employee);
+    }
+
+    public function hiddenIndex()
+    {
+        $employees = Employee::where('is_hidden', true)->get();
+        return view('livewire.employees.hidden-index', ['employees' => $employees]);
     }
 }

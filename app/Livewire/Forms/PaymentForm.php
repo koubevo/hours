@@ -30,7 +30,7 @@ class PaymentForm extends Component
 
     public function mount($employee = null, $payment_id = null)
     {
-        $this->employees = Employee::all();
+        $this->employees = Employee::where('is_hidden', false)->orderBy('name')->get();
 
         if ($payment_id) {
             // Edit mode

@@ -18,6 +18,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::resource('/employee', EmployeeController::class)
         ->only(['create', 'show', 'edit', 'hide']);
 
+    Route::get('/employee/{employee}/toggleHidden', [EmployeeController::class, 'toggleHidden'])
+        ->name('employee.toggleHidden');
+
     Route::resource('/hours', HoursController::class)
         ->only(['create', 'edit']);
 
