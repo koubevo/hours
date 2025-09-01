@@ -12,14 +12,16 @@
 
 <body class="min-h-screen bg-white dark:bg-zinc-800">
     <flux:sidebar sticky stashable
-        class="bg-zinc-50 dark:bg-zinc-900 border-r rtl:border-r-0 rtl:border-l border-zinc-200 dark:border-zinc-700">
-        <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
+        class="bg-zinc-50 dark:bg-zinc-900 border-r rtl:border-r-0 rtl:border-l border-zinc-200 dark:border-zinc-700 w-full lg:w-auto">
+        <div class="flex justify-end mt-2">
+            <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
+        </div>
         <flux:brand href="{{ route('admin.dashboard') }}" logo="{{ asset('storage/logo.png') }}"
             name="{{ env('COMPANY_NAME') }}" class="px-2 dark:hidden" />
         <flux:navlist variant="outline">
             <flux:navlist.item icon="home" href="{{ route('admin.dashboard') }}">Domů</flux:navlist.item>
             <flux:navlist.item icon="plus" href="{{ route('hours.create') }}">Přidat hodiny</flux:navlist.item>
-            <flux:navlist.group expandable heading="Zaměstnanci" class="hidden lg:grid">
+            <flux:navlist.group expandable heading="Zaměstnanci" class="grid">
                 @foreach($allEmployees as $employee)
                     @php
                         if ($employee->hasDraftHoursToday()) {
@@ -51,9 +53,12 @@
         </flux:navlist>
     </flux:sidebar>
     <flux:main>
-        <flux:heading size="xl" level="1">
-            @yield('title')
-        </flux:heading>
+        <div class="flex items-center justify-between">
+            <flux:heading size="xl" level="1">
+                @yield('title')
+            </flux:heading>
+            <flux:sidebar.toggle class="lg:hidden" icon="bars-3" />
+        </div>
         <flux:separator class="my-2" variant="subtle" />
         @yield('content')
     </flux:main>
