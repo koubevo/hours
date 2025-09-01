@@ -13,7 +13,7 @@ use Livewire\Component;
 class HoursForm extends Component
 {
     public Collection $employees;
-    public Employee|string|int $employee;
+    public Employee|string|int|null $employee;
     public $work_date;
     public $start_time;
     public $end_time;
