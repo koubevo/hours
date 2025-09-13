@@ -19,8 +19,15 @@
         <flux:brand href="{{ route('admin.dashboard') }}" logo="{{ asset('storage/logo.png') }}"
             name="{{ env('COMPANY_NAME') }}" class="px-2 dark:hidden" />
         <flux:navlist variant="outline">
-            <flux:navlist.item icon="home" href="{{ route('admin.dashboard') }}">Domů</flux:navlist.item>
-            <flux:navlist.item icon="plus" href="{{ route('hours.create') }}">Přidat hodiny</flux:navlist.item>
+            <flux:navlist.item icon="home" href="{{ route('admin.dashboard') }}">
+                Domů
+            </flux:navlist.item>
+            <flux:navlist.item icon="plus" href="{{ route('hours.create') }}">
+                Přidat hodiny
+            </flux:navlist.item>
+            <flux:navlist.item icon="magnifying-glass" href="{{ route('hours.index') }}">
+                Vyhledat hodiny
+            </flux:navlist.item>
             <flux:navlist.group expandable heading="Zaměstnanci" class="grid">
                 @foreach($allEmployees as $employee)
                     @php
@@ -51,6 +58,9 @@
                     </flux:navlist.item>
                 @endforeach
             </flux:navlist.group>
+            <flux:navlist.item icon="trash" href="{{ route('hours.deletedIndex') }}">
+                Smazané hodiny
+            </flux:navlist.item>
         </flux:navlist>
         <flux:spacer />
         <flux:navlist variant="outline">
@@ -75,7 +85,6 @@
             'message' => session('success')
         ])
     @endif
-
     @if (session()->has('failure'))
         @livewire('ui.failure-toast', [
             'message' => session('failure')

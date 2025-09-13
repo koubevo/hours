@@ -22,7 +22,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         ->name('employee.toggleHidden');
 
     Route::resource('/hours', HoursController::class)
-        ->only(['create', 'edit']);
+        ->only(['index', 'create', 'edit']);
+
+    Route::get('/hours/deleted', [HoursController::class, 'deletedIndex'])
+        ->name('hours.deletedIndex');
 
     Route::resource('/payment', PaymentController::class)
         ->only(['index', 'create', 'edit']);

@@ -41,4 +41,9 @@ class Hour extends Model
     {
         return $this->work_date ? Carbon::parse($this->work_date)->format('d.m.') : null;
     }
+
+    public function getFormattedDeletedAtAttribute(): ?string
+    {
+        return $this->deleted_at ? Carbon::parse($this->deleted_at)->format('d.m.Y H:i') : null;
+    }
 }

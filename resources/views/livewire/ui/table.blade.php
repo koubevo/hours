@@ -44,8 +44,12 @@
             @foreach ($columns as $column)
                 <col class="{{ isset($column['print_only']) && $column['print_only'] ? 'hidden print:table-column' : '' }}">
             @endforeach
-            <col class="w-10 print:hidden"/>
-            <col class="w-10 print:hidden"/>
+            @if ($tableType === 'deleted')
+                <col class="w-10 print:hidden"/>
+            @else
+                <col class="w-10 print:hidden"/>
+                <col class="w-10 print:hidden"/>
+            @endif
         </colgroup>
         <thead class="border-b-2 border-gray-500">
             <tr>
@@ -59,8 +63,16 @@
                         </flux:heading>
                     </th>
                 @endforeach
-                <th class="text-start py-4 print:hidden"></th>
-                <th class="text-start py-4 print:hidden"></th>
+                @if ($tableType === 'deleted')
+                    <th class="text-start py-4 print:hidden">
+                        <flux:heading>
+                            Obnovit
+                        </flux:heading>
+                    </th>
+                @else
+                    <th class="text-start py-4 print:hidden"></th>
+                    <th class="text-start py-4 print:hidden"></th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -106,16 +118,24 @@
                             </flux:text>
                         </td>
                     @endforeach
-                    <td class="py-3 border-b text-end pe-2 print:hidden">
-                        <a href="{{ route($editRoute, $row->id) }}" class="cursor-pointer inline-flex justify-end w-full">
-                            <flux:icon name="pencil" class="size-4"/>
-                        </a>
-                    </td>
-                    <td class="py-3 border-b text-end pe-2 print:hidden">
-                        <button class="cursor-pointer inline-flex justify-end w-full" wire:click="confirmDelete({{ $row->id }})">
-                            <flux:icon name="trash" class="size-4 hover:text-red-500"/>
-                        </button>
-                    </td>
+                    @if ($tableType === 'deleted')
+                        <td class="py-3 border-b text-end pe-2 print:hidden">
+                            <button class="cursor-pointer inline-flex justify-end w-full" wire:click="confirmRestore({{ $row->id }})" title="Obnovit">
+                                <flux:icon name="arrow-uturn-left" class="size-4 hover:text-green-600"/>
+                            </button>
+                        </td>
+                    @else
+                        <td class="py-3 border-b text-end pe-2 print:hidden">
+                            <a href="{{ route($editRoute, $row->id) }}" class="cursor-pointer inline-flex justify-end w-full" title="Upravit">
+                                <flux:icon name="pencil" class="size-4"/>
+                            </a>
+                        </td>
+                        <td class="py-3 border-b text-end pe-2 print:hidden">
+                            <button class="cursor-pointer inline-flex justify-end w-full" wire:click="confirmDelete({{ $row->id }})" title="Smazat">
+                                <flux:icon name="trash" class="size-4 hover:text-red-500"/>
+                            </button>
+                        </td>
+                    @endif
                 </tr>
             @empty
                 <tr>
@@ -171,6 +191,31 @@
                 </flux:button>
                 <flux:button wire:click="deleteRow" variant="primary" color="red" class="cursor-pointer">
                     Smazat
+                </flux:button>
+            </div>
+        </div>
+    </flux:modal>
+    <flux:modal name="restore-row" class="md:w-[500px]" wire:model="showRestoreModal">
+        <div class="space-y-6">
+            <div>
+                <flux:heading size="lg">Obnovit záznam?</flux:heading>
+            </div>
+            @if ($arrayRestoreInformation)   
+                <div class="grid grid-cols-[1.5fr_1fr_1fr_1fr] border-t border-b">
+                    @foreach (range(1, 4) as $i)
+                        <flux:text class="px-2 py-2 border-b">{{ $arrayRestoreInformation['label' . $i] ?? '' }}</flux:text>
+                    @endforeach
+                    @foreach (range(1, 4) as $i)
+                        <flux:text class="px-2 py-2">{{ $arrayRestoreInformation['value' . $i] ?? '' }}</flux:text>
+                    @endforeach
+                </div>
+            @endif
+            <div class="flex gap-2">
+                <flux:button wire:click="$set('showRestoreModal', false)" class="cursor-pointer">
+                    Zrušit
+                </flux:button>
+                <flux:button wire:click="restoreRow" variant="primary" color="green" class="cursor-pointer">
+                    Obnovit
                 </flux:button>
             </div>
         </div>
