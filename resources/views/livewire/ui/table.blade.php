@@ -8,6 +8,7 @@
         </div>
         <div class="flex items-center gap-2 print:hidden">
             @if ($showMonthSelector)
+                <span class="mx-1"><flux:text>Měsíc</flux:text></span>
                 <flux:select wire:model.live="selectedMonth" name="selectedMonth" wire:key="month-select">
                     <flux:select.option value="">Vše</flux:select.option>
                     @php
@@ -20,6 +21,26 @@
                     @endphp
                     @foreach ($availableMonths as $ym)
                         <flux:select.option value="{{ $ym }}">{{ Str::ucfirst(\Carbon\Carbon::createFromFormat('Y-m-d', $ym.'-01')->locale('cs')->translatedFormat('F Y')) }}</flux:select.option>
+                    @endforeach
+                </flux:select>
+            @endif  
+            
+            @if ($showDatesSelector)
+                <span class="mx-1"><flux:text>Od</flux:text></span>
+                <flux:input type="date" max="{{ date('Y-m-d') }}" wire:model.live="selectedStartDate" name="selectedStartDate" wire:key="start-date-select" />
+                <span class="mx-1"><flux:text>Do</flux:text></span>
+                <flux:input type="date" min="{{ date('Y-m-d') }}" wire:model.live="selectedEndDate" name="selectedEndDate" wire:key="end-date-select" />
+            @endif  
+            
+            @if ($showEmployeeSelector)
+                <span class="mx-1"><flux:text>Kdo</flux:text></span>
+                <flux:select wire:model.live="selectedEmployee" name="selectedEmployee" wire:key="employee-select">
+                    <flux:select.option value="">Vše</flux:select.option>
+                    @php
+                        $employees = App\Models\Employee::all();
+                    @endphp
+                    @foreach ($employees as $employee)
+                        <flux:select.option value="{{ $employee->id }}">{{ $employee->name }}</flux:select.option>
                     @endforeach
                 </flux:select>
             @endif    

@@ -14,6 +14,8 @@ class Table extends Component
     public array $columns = [];
     public Collection $rows;
     public bool $showMonthSelector = false;
+    public bool $showDatesSelector = false;
+    public bool $showEmployeeSelector = false;
     public bool $showSum = false;
     public ?string $selectedMonth = null;
     public ?string $editRoute = null;
