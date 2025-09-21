@@ -27,6 +27,7 @@ class Table extends Component
     public ?int $rowToRestoreId = null;
     public ?string $restoreModel = null;
     public ?array $arrayRestoreInformation = null;
+    public ?int $tableNumber = 1;
 
     public function render(): View
     {

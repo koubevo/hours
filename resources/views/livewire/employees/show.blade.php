@@ -70,7 +70,8 @@
                     'showMonthSelector' => true,
                     'editRoute' => 'hours.edit',
                     'deleteModel' => \App\Models\Hour::class,
-                    'heading' => 'Docházka'
+                    'heading' => 'Docházka',
+                    'tableNumber' => 1
                 ])
             @endif
             @if (!empty($employee->payments))
@@ -83,7 +84,8 @@
                     'rows' => $employee->payments,
                     'editRoute' => 'payment.edit',
                     'deleteModel' => \App\Models\Payment::class,
-                    'heading' => 'Platby'
+                    'heading' => 'Platby',
+                    'tableNumber' => 2
                 ])
             @endif
     </section>

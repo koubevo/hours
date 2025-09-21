@@ -1,4 +1,4 @@
-<div class="border rounded-lg p-8 overflow-x-auto" id="printableTableContainer">
+<div class="border rounded-lg p-8 overflow-x-auto printableTableContainer" id="printableTableContainer-{{ $tableNumber }}">
     
     <div class="flex items-center justify-between gap-4 mb-6">
         <div>
@@ -231,11 +231,27 @@
         <div></div>
         <div class="flex gap-2 justify-end hidden md:block">
             @if (count($displayRows) > 0)
-                <flux:button class="cursor-pointer" onclick="window.print()">
+                <flux:button class="cursor-pointer" onclick="printTable('printableTableContainer-{{ $tableNumber }}')">
                     <flux:icon name="printer" class="size-4"></flux:icon>
                     Vytisknout
                 </flux:button>
             @endif
         </div>
     </div>
+<script>
+    function printTable(containerId) {
+    
+    const tableContainer = document.getElementById(containerId);
+    if (!tableContainer) {
+        console.error('Kontejner tabulky s ID ' + containerId + ' nebyl nalezen.');
+        return;
+    }
+
+    tableContainer.classList.add('print-active');
+
+    window.print();
+
+    tableContainer.classList.remove('print-active');
+    }
+</script>
 </div>
