@@ -27,9 +27,9 @@
             
             @if ($showDatesSelector)
                 <span class="mx-1"><flux:text>Od</flux:text></span>
-                <flux:input type="date" max="{{ date('Y-m-d') }}" wire:model.live="selectedStartDate" name="selectedStartDate" wire:key="start-date-select" />
+                <flux:input type="date" max="{{ $selectedEndDate ?? date('Y-m-d') }}" wire:model.live="selectedStartDate" name="selectedStartDate" wire:key="start-date-select" />
                 <span class="mx-1"><flux:text>Do</flux:text></span>
-                <flux:input type="date" min="{{ date('Y-m-d') }}" wire:model.live="selectedEndDate" name="selectedEndDate" wire:key="end-date-select" />
+                <flux:input type="date" min="{{ $selectedStartDate ?? '' }}" max="{{ date('Y-m-d') }}" wire:model.live="selectedEndDate" name="selectedEndDate" wire:key="end-date-select" />
             @endif  
             
             @if ($showEmployeeSelector)
@@ -48,16 +48,42 @@
     </div>
 
     @php
-        $displayRows = $rows;
+        $displayRows = collect($rows);
+
         if (!empty($selectedMonth)) {
-            $displayRows = collect($rows)->filter(function ($r) use ($selectedMonth) {
+            $displayRows = $displayRows->filter(function ($r) use ($selectedMonth) {
                 try {
-                    return \Carbon\Carbon::parse($r->work_date)->format('Y-m') === $selectedMonth;
+                    $rowDate = $r->work_date ?? $r->payment_date ?? null;
+                    if (!$rowDate) { return false; }
+                    return \Carbon\Carbon::parse($rowDate)->format('Y-m') === $selectedMonth;
                 } catch (\Throwable $e) {
                     return false;
                 }
-            })->values();
+            });
         }
+
+        if (!empty($selectedStartDate) || !empty($selectedEndDate)) {
+            $displayRows = $displayRows->filter(function ($r) use ($selectedStartDate, $selectedEndDate) {
+                try {
+                    $rowDate = $r->work_date ?? $r->payment_date ?? null;
+                    if (!$rowDate) { return false; }
+                    $row = \Carbon\Carbon::parse($rowDate)->startOfDay();
+                    $from = !empty($selectedStartDate) ? \Carbon\Carbon::parse($selectedStartDate)->startOfDay() : null;
+                    $to = !empty($selectedEndDate) ? \Carbon\Carbon::parse($selectedEndDate)->endOfDay() : null;
+                    if ($from && $row->lt($from)) { return false; }
+                    if ($to && $row->gt($to)) { return false; }
+                    return true;
+                } catch (\Throwable $e) {
+                    return false;
+                }
+            });
+        }
+
+        if (!empty($selectedEmployee)) {
+            $displayRows = $displayRows->where('employee_id', (int) $selectedEmployee);
+        }
+
+        $displayRows = $displayRows->values();
     @endphp
     <table class="w-full min-w-[800px] print:min-w-[200px]">
         <colgroup>

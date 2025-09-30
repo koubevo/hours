@@ -8,6 +8,7 @@ use App\Models\Payment;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Illuminate\Support\Carbon;
 
 class Table extends Component
 {
@@ -18,6 +19,9 @@ class Table extends Component
     public bool $showEmployeeSelector = false;
     public bool $showSum = false;
     public ?string $selectedMonth = null;
+    public ?string $selectedStartDate = null;
+    public ?string $selectedEndDate = null;
+    public ?string $selectedEmployee = null;
     public ?string $editRoute = null;
     public bool $showDeleteModal = false;
     public ?int $rowToDeleteId = null;
@@ -34,6 +38,65 @@ class Table extends Component
     public function render(): View
     {
         return view('livewire.ui.table');
+    }
+
+    public function updatedSelectedStartDate(): void
+    {
+        $this->refreshRows();
+    }
+
+    public function updatedSelectedEndDate(): void
+    {
+        $this->refreshRows();
+    }
+
+    public function updatedSelectedEmployee(): void
+    {
+        $this->refreshRows();
+    }
+
+    protected function refreshRows(): void
+    {
+        if (empty($this->deleteModel)) {
+            return;
+        }
+
+        $modelClass = $this->deleteModel;
+
+        $dateColumn = null;
+        $with = [];
+        switch ($modelClass) {
+            case Hour::class:
+                $dateColumn = 'work_date';
+                $with = ['employee'];
+                break;
+            case Payment::class:
+                $dateColumn = 'payment_date';
+                $with = ['employee'];
+                break;
+            default:
+                $dateColumn = 'created_at';
+        }
+
+        $query = $modelClass::query()->with($with);
+
+        if ($this->tableType === 'deleted' && method_exists($modelClass, 'bootSoftDeletes')) {
+            $query = $modelClass::onlyTrashed()->with($with);
+        }
+
+        if (!empty($this->selectedEmployee)) {
+            $query->where('employee_id', (int) $this->selectedEmployee);
+        }
+
+        if (!empty($this->selectedStartDate)) {
+            $query->whereDate($dateColumn, '>=', $this->selectedStartDate);
+        }
+        if (!empty($this->selectedEndDate)) {
+            $query->whereDate($dateColumn, '<=', $this->selectedEndDate);
+        }
+        $query->when(!empty($dateColumn), fn($q) => $q->orderByDesc($dateColumn));
+
+        $this->rows = $query->get();
     }
 
     public function confirmDelete($rowId): void
