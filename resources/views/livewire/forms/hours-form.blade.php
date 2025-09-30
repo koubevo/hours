@@ -1,5 +1,5 @@
 <form wire:submit.prevent="save">
-    <div class="flex flex-col md:flex-row gap-4 mt-4">
+    <div class="flex flex-col md:flex-row gap-4">
         <div class="w-full md:w-2/3 space-y-4">
             <div>
                 <flux:field>

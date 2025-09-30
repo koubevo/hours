@@ -1,4 +1,4 @@
 @props(['employees'])
-<section class="py-2">
+<section>
     <x-all-employees :employees="$employees" />
 </section>
