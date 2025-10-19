@@ -13,6 +13,7 @@ use Carbon\Carbon;
 class Employee extends Authenticatable
 {
     use SoftDeletes;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
