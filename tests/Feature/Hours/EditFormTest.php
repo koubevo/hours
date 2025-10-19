@@ -1,9 +1,7 @@
 <?php
 
 use App\Livewire\Forms\HoursForm;
-use App\Models\Employee;
 use App\Models\Hour;
-use App\Enum\HoursStatus;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
@@ -11,7 +9,7 @@ uses(RefreshDatabase::class);
 
 test('edit hours form can be rendered', function () {
     $hour = Hour::factory()->create();
-    $response = $this->get('/admin/hours/' . $hour->id . '/edit');
+    $response = $this->get('/admin/hours/'.$hour->id.'/edit');
 
     $response->assertStatus(200);
 });
@@ -20,7 +18,7 @@ test('edit hours form can be submitted', function () {
     $hour = Hour::factory()->create([
         'work_date' => '2025-10-19',
         'start_time' => '08:00',
-        'end_time' => '12:00', 
+        'end_time' => '12:00',
     ]);
 
     Livewire::test(HoursForm::class)

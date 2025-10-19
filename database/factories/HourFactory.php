@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Employee;
 use App\Enum\HoursStatus;
+use App\Models\Employee;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Hour>
@@ -18,7 +18,7 @@ class HourFactory extends Factory
      */
     public function definition(): array
     {
-        
+
         return [
             'employee_id' => Employee::factory()->create()->id,
             'work_date' => $this->faker->date(),
