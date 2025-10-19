@@ -11,7 +11,7 @@ class AdminDashboardController extends Controller
     public function index()
     {
         $employees = Employee::where('is_hidden', false)->orderBy('name')->get();
-        $hours = Hour::with('employee')->where('work_date', Carbon::today()->toDateString())->get() ?? [];
+        $hours = Hour::with('employee')->where('work_date', Carbon::today()->toDateString())->get();
 
         return view('admin.dashboard', [
             'employees' => $employees,

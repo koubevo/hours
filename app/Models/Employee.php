@@ -62,8 +62,8 @@ class Employee extends Authenticatable
 
     public function debt(): float
     {
-        $sumOfPayments = $this->payments->sum('amount');
-        $sumOfEarnings = $this->hours->sum('earning');
+        $sumOfPayments = $this->payments()->sum('amount');
+        $sumOfEarnings = $this->hours()->sum('earning');
 
         return $sumOfEarnings - $sumOfPayments;
     }
