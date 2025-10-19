@@ -3,26 +3,33 @@
 namespace App\Livewire\Forms;
 
 use App\Enum\HoursStatus;
-use App\Models\Hour;
 use App\Models\Employee;
+use App\Models\Hour;
 use App\Support\HoursCalculator;
-use DateTime;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class HoursForm extends Component
 {
     public Collection $employees;
+
     public Employee|string|int|null $employee;
+
     public $work_date;
+
     public $start_time;
+
     public $end_time;
+
     public ?string $description;
+
     public ?int $hour_rate;
 
     // For edit mode
     public Hour $hour;
+
     public int $hourId;
+
     public bool $isEditMode = false;
 
     protected $rules = [
@@ -80,7 +87,7 @@ class HoursForm extends Component
             ->put('employee_id', $validated['employee'])
             ->toArray();
 
-        if (isset($data['end_time']) && $data['end_time'] !== "") {
+        if (isset($data['end_time']) && $data['end_time'] !== '') {
             $data['status'] = HoursStatus::Completed;
             $data['earning'] = HoursCalculator::calculateEarning(
                 $validated['start_time'],

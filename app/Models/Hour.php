@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Hour extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
         'employee_id',
         'work_date',
@@ -17,7 +18,7 @@ class Hour extends Model
         'end_time',
         'earning',
         'description',
-        'status'
+        'status',
     ];
 
     protected $appends = ['formatted_work_date'];

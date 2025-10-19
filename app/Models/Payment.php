@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Carbon\Carbon;
 
 class Payment extends Model
 {
@@ -14,8 +14,9 @@ class Payment extends Model
     protected $fillable = [
         'employee_id',
         'amount',
-        'payment_date'
+        'payment_date',
     ];
+
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);

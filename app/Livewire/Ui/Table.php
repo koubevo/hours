@@ -5,34 +5,54 @@ namespace App\Livewire\Ui;
 use App\Models\Employee;
 use App\Models\Hour;
 use App\Models\Payment;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
-use Illuminate\Support\Carbon;
 
 class Table extends Component
 {
     public array $columns = [];
+
     public Collection $rows;
+
     public bool $showMonthSelector = false;
+
     public bool $showDatesSelector = false;
+
     public bool $showEmployeeSelector = false;
+
     public bool $showSum = false;
+
     public ?string $selectedMonth = null;
+
     public ?string $selectedStartDate = null;
+
     public ?string $selectedEndDate = null;
+
     public ?string $selectedEmployee = null;
+
     public ?string $editRoute = null;
+
     public bool $showDeleteModal = false;
+
     public ?int $rowToDeleteId = null;
+
     public ?string $deleteModel = null;
+
     public ?array $arrayDeleteInformation = null;
+
     public ?string $heading = null;
+
     public ?string $tableType = null;
+
     public bool $showRestoreModal = false;
+
     public ?int $rowToRestoreId = null;
+
     public ?string $restoreModel = null;
+
     public ?array $arrayRestoreInformation = null;
+
     public ?int $tableNumber = 1;
 
     public function render(): View
@@ -84,17 +104,17 @@ class Table extends Component
             $query = $modelClass::onlyTrashed()->with($with);
         }
 
-        if (!empty($this->selectedEmployee)) {
+        if (! empty($this->selectedEmployee)) {
             $query->where('employee_id', (int) $this->selectedEmployee);
         }
 
-        if (!empty($this->selectedStartDate)) {
+        if (! empty($this->selectedStartDate)) {
             $query->whereDate($dateColumn, '>=', $this->selectedStartDate);
         }
-        if (!empty($this->selectedEndDate)) {
+        if (! empty($this->selectedEndDate)) {
             $query->whereDate($dateColumn, '<=', $this->selectedEndDate);
         }
-        $query->when(!empty($dateColumn), fn($q) => $q->orderByDesc($dateColumn));
+        $query->when(! empty($dateColumn), fn ($q) => $q->orderByDesc($dateColumn));
 
         $this->rows = $query->get();
     }
@@ -142,7 +162,7 @@ class Table extends Component
 
     public function deleteRow(): void
     {
-        if (!$this->rowToDeleteId) {
+        if (! $this->rowToDeleteId) {
             return;
         }
 
@@ -159,7 +179,7 @@ class Table extends Component
 
     public function restoreRow(): void
     {
-        if (!$this->rowToRestoreId) {
+        if (! $this->rowToRestoreId) {
             return;
         }
 

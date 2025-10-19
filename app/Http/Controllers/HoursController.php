@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Hour;
+use Illuminate\Http\Request;
 
 class HoursController extends Controller
 {
     public function index()
     {
         $hours = Hour::with('employee')->get();
+
         return view('livewire.hours.index', ['hours' => $hours]);
     }
 
     public function deletedIndex()
     {
         $hours = Hour::with('employee')->onlyTrashed()->get();
+
         return view('livewire.hours.deleted-index', ['hours' => $hours]);
     }
 
