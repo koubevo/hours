@@ -45,11 +45,4 @@ class EmployeeController extends Controller
 
         return redirect()->route('employee.show', $employee);
     }
-
-    public function hiddenIndex()
-    {
-        $employees = Employee::where('is_hidden', true)->get();
-
-        return view('livewire.employees.hidden-index', ['employees' => $employees]);
-    }
 }

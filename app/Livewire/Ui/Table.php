@@ -114,7 +114,7 @@ class Table extends Component
         if (! empty($this->selectedEndDate)) {
             $query->whereDate($dateColumn, '<=', $this->selectedEndDate);
         }
-        $query->when(! empty($dateColumn), fn ($q) => $q->orderByDesc($dateColumn));
+        $query->when($dateColumn, fn ($q) => $q->orderByDesc($dateColumn));
 
         $this->rows = $query->get();
     }
@@ -135,7 +135,7 @@ class Table extends Component
                     $this->arrayDeleteInformation = self::arrayPaymentInformation($row, $row->employee);
                     break;
                 default:
-                    $this->arrayDeleteInfromation = null;
+                    $this->arrayDeleteInformation = null;
             }
         }
     }
@@ -155,7 +155,7 @@ class Table extends Component
                     $this->arrayRestoreInformation = self::arrayPaymentInformation($row, $row->employee);
                     break;
                 default:
-                    $this->arrayRestoreInfromation = null;
+                    $this->arrayRestoreInformation = null;
             }
         }
     }
