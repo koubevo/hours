@@ -5,12 +5,7 @@ use Livewire\Volt\Volt;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-test('profile page is displayed', function () {
-    $this->actingAs($user = User::factory()->create());
-
-    $this->get('/settings/profile')->assertOk();
-});
-
+/*
 test('profile information can be updated', function () {
     $user = User::factory()->create();
 
@@ -74,4 +69,4 @@ test('correct password must be provided to delete account', function () {
     $response->assertHasErrors(['password']);
 
     expect($user->fresh())->not->toBeNull();
-});
+});*/

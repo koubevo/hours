@@ -6,7 +6,7 @@ use Carbon\Carbon;
 
 class HoursCalculator
 {
-    public static function calculateMinutesBetween(string $startTimeHhMm, string $endTimeHhMm): float
+    public static function calculateMinutesBetween(string $startTimeHhMm, string $endTimeHhMm): int
     {
         $start = Carbon::createFromFormat('H:i', $startTimeHhMm);
         $end = Carbon::createFromFormat('H:i', $endTimeHhMm);
@@ -19,7 +19,7 @@ class HoursCalculator
             $end->addDay();
         }
 
-        return round($start->diffInMinutes($end));
+        return $start->diffInMinutes($end);
     }
 
     public static function calculateEarning(string $startTimeHhMm, string $endTimeHhMm, int $hourRate): int

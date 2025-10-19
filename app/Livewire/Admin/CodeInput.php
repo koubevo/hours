@@ -10,7 +10,7 @@ class CodeInput extends Component
 
     public function submit()
     {
-        if ($this->code === env('ADMIN_CODE')) {
+        if ($this->code === config('admin.admin_code')) {
             session()->put('is_admin', true);
 
             return redirect()->route('admin.dashboard');
