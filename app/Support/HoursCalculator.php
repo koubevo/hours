@@ -25,6 +25,7 @@ class HoursCalculator
     public static function calculateEarning(string $startTimeHhMm, string $endTimeHhMm, int $hourRate): int
     {
         $minutes = self::calculateMinutesBetween($startTimeHhMm, $endTimeHhMm);
+
         return (int) round(($minutes / 60) * $hourRate);
     }
 
@@ -33,5 +34,3 @@ class HoursCalculator
         return (int) round(($minutes / 60) * $hourRate);
     }
 }
-
-

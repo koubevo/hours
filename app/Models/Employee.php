@@ -3,12 +3,9 @@
 namespace App\Models;
 
 use App\Enum\HoursStatus;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
-use Carbon\Carbon;
 
 class Employee extends Authenticatable
 {
@@ -22,7 +19,7 @@ class Employee extends Authenticatable
     protected $fillable = [
         'name',
         'hour_rate',
-        'is_hidden'
+        'is_hidden',
     ];
 
     public function hours()

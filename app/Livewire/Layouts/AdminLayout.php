@@ -14,7 +14,7 @@ class AdminLayout extends Component
     public function navigateToRoute($employee = null)
     {
         return redirect()->route('hours.create', [
-            'employee' => $employee
+            'employee' => $employee,
         ]);
     }
 }

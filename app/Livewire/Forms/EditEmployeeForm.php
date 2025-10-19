@@ -8,7 +8,9 @@ use Livewire\Component;
 class EditEmployeeForm extends Component
 {
     public Employee $employee;
+
     public string $name;
+
     public ?int $hour_rate;
 
     public function mount(Employee $employee)
@@ -33,6 +35,7 @@ class EditEmployeeForm extends Component
         ]);
 
         session()->flash('success', 'Zaměstnanec byl upraven.');
+
         return redirect()->route('admin.dashboard');
     }
 
