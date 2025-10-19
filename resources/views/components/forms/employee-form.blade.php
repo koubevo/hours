@@ -1,4 +1,4 @@
-<div class="w-full md:w-2/3 mt-4 space-y-4">
+<div class="w-full md:w-2/3 mt-2 space-y-4 mb-2">
     <div>
         <flux:field>
             <flux:label>Jméno *
@@ -7,15 +7,6 @@
             <flux:input id="name" type="text" wire:model="name" />
 
             <flux:error name="name" />
-        </flux:field>
-    </div>
-    <div>
-        <flux:field>
-            <flux:label>Přezdívka</flux:label>
-
-            <flux:input id="nickname" type="text" wire:model="nickname" />
-
-            <flux:error name="nickname" />
         </flux:field>
     </div>
     <div>
@@ -29,4 +20,4 @@
         </flux:field>
     </div>
 </div>
-<flux:text>* Povinné pole</flux:text>
+<flux:text class="mb-0">* Povinné pole</flux:text>

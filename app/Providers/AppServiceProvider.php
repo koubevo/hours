@@ -21,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('components.layouts.admin', EmployeeSidebarComposer::class);
+        View::composer('livewire.layouts.admin-layout', EmployeeSidebarComposer::class);
     }
 }

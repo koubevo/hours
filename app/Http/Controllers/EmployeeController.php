@@ -3,18 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
-use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -28,6 +19,15 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
+        $employee->load([
+            'hours' => function ($query) {
+                $query->orderBy('work_date', 'desc');
+            },
+            'payments' => function ($query) {
+                $query->orderBy('payment_date', 'desc');
+            },
+        ]);
+
         return view('livewire.employees.show', ['employee' => $employee]);
     }
 
@@ -39,9 +39,17 @@ class EmployeeController extends Controller
         return view('components.employees.edit', ['employee' => $employee]);
     }
 
-    public function hide(Employee $employee)
+    public function toggleHidden(Employee $employee)
     {
-        //TODO
-        return;
+        $employee->update(['is_hidden' => ! $employee->is_hidden]);
+
+        return redirect()->route('employee.show', $employee);
+    }
+
+    public function hiddenIndex()
+    {
+        $employees = Employee::where('is_hidden', true)->get();
+
+        return view('livewire.employees.hidden-index', ['employees' => $employees]);
     }
 }

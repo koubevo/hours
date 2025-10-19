@@ -1,4 +1,4 @@
-@extends('components.layouts.admin')
+@extends('livewire.layouts.admin-layout')
 
 @section('title', 'Přidat zaměstnance')
 
