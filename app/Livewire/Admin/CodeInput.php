@@ -12,11 +12,13 @@ class CodeInput extends Component
     {
         if ($this->code === env('ADMIN_CODE')) {
             session()->put('is_admin', true);
+
             return redirect()->route('admin.dashboard');
         }
 
         $this->addError('code', 'Neplatný kód');
     }
+
     public function render()
     {
         return view('livewire.admin.code-input');

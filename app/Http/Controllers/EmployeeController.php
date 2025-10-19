@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
-use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
@@ -28,6 +27,7 @@ class EmployeeController extends Controller
                 $query->orderBy('payment_date', 'desc');
             },
         ]);
+
         return view('livewire.employees.show', ['employee' => $employee]);
     }
 
@@ -41,13 +41,15 @@ class EmployeeController extends Controller
 
     public function toggleHidden(Employee $employee)
     {
-        $employee->update(['is_hidden' => !$employee->is_hidden]);
+        $employee->update(['is_hidden' => ! $employee->is_hidden]);
+
         return redirect()->route('employee.show', $employee);
     }
 
     public function hiddenIndex()
     {
         $employees = Employee::where('is_hidden', true)->get();
+
         return view('livewire.employees.hidden-index', ['employees' => $employees]);
     }
 }

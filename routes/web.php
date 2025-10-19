@@ -5,7 +5,6 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HoursController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
 
 Route::view('admin/login', 'admin.login')
     ->name('admin.login');
@@ -31,4 +30,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         ->only(['index', 'create', 'edit']);
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

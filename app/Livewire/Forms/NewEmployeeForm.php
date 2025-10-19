@@ -8,6 +8,7 @@ use Livewire\Component;
 class NewEmployeeForm extends Component
 {
     public string $name;
+
     public ?int $hour_rate;
 
     protected $rules = [
@@ -21,7 +22,7 @@ class NewEmployeeForm extends Component
 
         Employee::create([
             'name' => $this->name,
-            'hour_rate' => $this->hour_rate ?? null
+            'hour_rate' => $this->hour_rate ?? null,
         ]);
 
         $this->reset();

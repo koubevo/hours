@@ -10,7 +10,7 @@ class ButtonGroup extends Component
 
     public function mount(array $buttons)
     {
-        $this->buttons = $buttons;    
+        $this->buttons = $buttons;
     }
 
     public function render()

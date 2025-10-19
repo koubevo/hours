@@ -2,24 +2,26 @@
 
 namespace App\Livewire\Forms;
 
-use App\Enum\HoursStatus;
-use App\Models\Hour;
 use App\Models\Employee;
 use App\Models\Payment;
-use App\Support\HoursCalculator;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class PaymentForm extends Component
 {
     public Collection $employees;
+
     public Employee|string|int|null $employee;
+
     public $payment_date;
+
     public float $amount;
 
     // For edit mode
     public Payment $payment;
+
     public ?int $paymentId;
+
     public bool $isEditMode = false;
 
     protected $rules = [
@@ -46,8 +48,6 @@ class PaymentForm extends Component
             $this->payment_date = now()->format('Y-m-d');
         }
     }
-
-
 
     public function render()
     {

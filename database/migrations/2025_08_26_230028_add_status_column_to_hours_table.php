@@ -1,9 +1,9 @@
 <?php
 
+use App\Enum\HoursStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Enum\HoursStatus;
 
 return new class extends Migration
 {

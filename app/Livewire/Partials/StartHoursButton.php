@@ -20,5 +20,3 @@ class StartHoursButton extends Component
         return view('livewire.partials.start-hours-button');
     }
 }
-
-

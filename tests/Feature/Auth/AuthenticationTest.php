@@ -10,7 +10,7 @@ test('login screen can be rendered', function () {
     $response->assertStatus(200);
 });
 
-//TODO: Add tests for authentication after the login page is implemented
+// TODO: Add tests for authentication after the login page is implemented
 /*test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
