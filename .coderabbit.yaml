@@ -1,5 +1,5 @@
 reviews:
-  base_branches: ["dev"]
+  base_branches: ["develop"]
   profile: chill
   high_level_summary: true
   auto_review:
