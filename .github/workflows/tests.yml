@@ -15,6 +15,21 @@ jobs:
     runs-on: ubuntu-latest
     environment: Testing
 
+    services:
+      pgsql:
+        image: postgres:15
+        env:
+          POSTGRES_DB: testing_db
+          POSTGRES_USER: sail
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,8 +44,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'npm'
+          node-version: "22"
+          cache: "npm"
 
       - name: Install Node Dependencies
         run: npm i
@@ -51,4 +66,11 @@ jobs:
         run: npm run build
 
       - name: Run Tests
+        env:
+          DB_CONNECTION: pgsql
+          DB_HOST: pgsql
+          DB_PORT: 5432
+          DB_DATABASE: testing_db
+          DB_USERNAME: sail
+          DB_PASSWORD: password
         run: ./vendor/bin/pest
