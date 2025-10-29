@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      pgsql:
+      postgres:
         image: postgres:15
         env:
           POSTGRES_DB: testing_db
@@ -67,7 +67,7 @@ jobs:
       - name: Run Tests
         env:
           DB_CONNECTION: pgsql
-          DB_HOST: pgsql
+          DB_HOST: 127.0.0.1
           DB_PORT: 5432
           DB_DATABASE: testing_db
           DB_USERNAME: sail
